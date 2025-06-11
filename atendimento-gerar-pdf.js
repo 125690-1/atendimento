@@ -133,7 +133,7 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
     }))
   };
 
-  fetch("https://backend-atendimento-materiais-818351890829.southamerica-east1.run.app/enviar", {
+  fetch("https://backend-controle-materiais-818351890829.southamerica-east1.run.app/enviar", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
