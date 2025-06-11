@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CONTROLE MATERIAIS</title>
+  <link rel="stylesheet" href="atendimento-materiais.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Formulário de Atendimento</h1>
+
+    <div class="form-group">
+      <label for="base">Base</label>
+      <select id="base">
+        <option value=""></option>
+        <option value="maracanau">MARACANAÚ</option>
+        <option value="jacarecanga">JACARECANGA</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="data">Data</label>
+      <input type="date" id="data">
+    </div>
+
+    <div class="form-group">
+      <label for="atendido-por">Atendido por</label>
+      <input type="text" list="atendentes-mro" id="atendido-por">
+      <datalist id="atendentes-mro"></datalist>
+    </div>
+
+    <div class="form-group">
+      <label for="lead">Lead</label>
+      <input type="text" list="leads" id="lead">
+      <datalist id="leads"></datalist>
+    </div>
+
+    <div class="form-group">
+      <label for="recebido-por">Solicitado por</label>
+      <input type="text" list="receptador" id="recebido-por">
+      <datalist id="receptador"></datalist>
+    </div>
+
+    <div class="form-group">
+      <label for="ane">ANE</label>
+      <input type="tel" id="ane">
+    </div>
+
+    <div class="form-group os-buttons">
+      <label>Tipo de Ordem de Serviço</label>
+      <div class="button-group">
+        <button type="button" onclick="mostrarCampoOS('INC')">INC</button>
+        <button type="button" onclick="mostrarCampoOS('DT')">DT</button>
+        <button type="button" onclick="mostrarCampoOS('BA')">BA</button>
+      </div>
+    </div>
+
+    <div id="os-container" class="form-group"></div>
+
+    <div class="tabela-container">
+      <table>
+        <thead>
+          <tr>
+            <th>CÓDIGO</th>
+            <th>DESCRIÇÃO</th>
+            <th>UN</th>
+            <th>QTD.</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-materiais"></tbody>
+      </table>
+    </div>
+
+    <datalist id="lista-descricoes"></datalist>
+
+    <button id="gerar-pdf" class="gerar-btn">Gerar PDF</button>
+
+    
+  </div>
+
+  <!-- Bibliotecas jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+  <script src="atendimento-materiais.js"></script>
+  <script src="atendimento-gerar-pdf.js"></script>
+</body>
+</html>

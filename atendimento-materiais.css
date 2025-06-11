@@ -1,0 +1,144 @@
+/* Reset e estrutura básica */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #444;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input:focus,
+select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.os-buttons .button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.os-buttons button {
+  flex: 1;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.os-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.tabela-container {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f9f9f9;
+  margin-bottom: 20px;
+}
+
+thead {
+  background-color: #444;
+  color: white;
+}
+
+thead th {
+  padding: 8px;
+  font-size: 13px;
+  text-align: center;
+}
+
+tbody td {
+  padding: 5px;
+}
+
+tbody input {
+  width: 100%;
+  padding: 6px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.gerar-btn {
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.gerar-btn:hover {
+  background-color: #1e7e34;
+}
+
+/* Largura personalizada das colunas da tabela no formulário */
+table thead th:nth-child(1),
+table tbody td:nth-child(1) {
+  width: 7%; /* CÓDIGO */
+}
+
+table thead th:nth-child(2),
+table tbody td:nth-child(2) {
+  width: 50%; /* DESCRIÇÃO */
+}
+
+table thead th:nth-child(3),
+table tbody td:nth-child(3) {
+  width: 10%; /* UN */
+}
+
+table thead th:nth-child(4),
+table tbody td:nth-child(4) {
+  width: 10%; /* QTD. */
+}
