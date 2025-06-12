@@ -113,7 +113,11 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
   doc.line(115, rodapeY, 190, rodapeY);
   doc.text("SOLICITANTE", 139, rodapeY + 5);
 
-  doc.save("formulario-atendimento.pdf");
+  const tipo = "ATENDIMENTO";
+  const nomeArquivo = ordemServico
+    ? `${tipo} ${ordemServico}.pdf`
+    : `${tipo} ${ane}.pdf`;
+  doc.save(nomeArquivo);
 
     // Enviar para o backend Flask
   const payload = {
