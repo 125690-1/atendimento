@@ -1,755 +1,88 @@
-// Lista de atendentes
-const atendentesMRO = [
-  "ADRIANO ACACIO DUARTE",
-  "AGENOR ALVES DA SILVA",
-  "ANTONIO MARCOS",
-  "BRUNO SILVA",
-  "CARLOS EDUARDO"
-];
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CONTROLE MATERIAIS</title>
+  <link rel="stylesheet" href="atendimento-materiais.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Formulário de Atendimento</h1>
 
-const receptadores = [
-  "JOÃO PEREIRA",
-  "LUCAS MENDES",
-  "PAULO HENRIQUE",
-  "RAFAEL GOMES"
-];
+    <div class="form-group">
+      <label for="base">Base</label>
+      <select id="base">
+        <option value=""></option>
+        <option value="maracanau">MARACANAÚ</option>
+        <option value="jacarecanga">JACARECANGA</option>
+      </select>
+    </div>
 
-const leads = [
-  "DFD-AI-07B",
-  "DFD-AI-13B",
-  "DFD-AI-15B",
-  "DFD-AI-16B",
-  "DFD-AI-17B",
-  "DFD-AP-01C",
-  "DFD-AP-01D",
-  "DFD-AP-02B",
-  "DFD-AP-02C",
-  "DFD-AP-03C",
-  "DFD-AP-04D",
-  "DFD-AP-05C",
-  "DFD-AP-07B",
-  "DFD-AP-08C",
-  "DFD-AP-10C",
-  "DFD-AP-11C",
-  "DFD-AP-12B",
-  "DFD-AP-14B",
-  "DFD-AP-15B",
-  "DFD-AP-30B",
-  "DFD-AP-30C",
-  "DFD-AP-31B",
-  "DFD-AP-31C",
-  "DFD-AP-32B",
-  "DFD-AP-32C",
-  "DFD-AP-33B",
-  "DFD-AP-33C",
-  "DFD-AP-34C",
-  "DFD-EP-61B",
-  "DFD-LL-41B",
-  "DFD-LL-43B",
-  "DFD-LR-48B",
-  "DFD-LR-49B",
-  "DFD-PP-66B",
-  "DFD-PP-67B",
-  "DFD-RD-01B",
-  "DFD-RD-01C",
-  "DFD-RD-02C",
-  "DFD-RD-03B",
-  "DFD-RD-03C",
-  "DFD-RD-04B",
-  "DFD-RD-04C",
-  "DFD-RD-05B",
-  "DFD-RD-05C",
-  "DFD-RD-06B",
-  "DFD-RD-07B",
-  "DFD-RD-10C",
-  "DFD-RD-12C",
-  "DFD-RD-14B",
-  "DFD-RD-16B",
-  "DFD-RD-17B",
-  "DFD-SG-01B",
-  "DFD-SG-01C",
-  "DFD-SG-01D",
-  "DFD-SG-02B",
-  "DFD-SG-02C",
-  "DFD-SG-02D",
-  "DFD-SG-03B",
-  "DFD-SG-03C",
-  "DFD-SG-03D",
-  "DFD-SG-04B",
-  "DFD-SG-04C",
-  "DFD-SG-04D",
-  "DFD-SG-05B",
-  "DFD-SG-05C",
-  "DFD-SG-05D",
-  "DFD-SG-06B",
-  "DFD-SG-06C",
-  "DFD-SG-07B",
-  "DFD-SG-07C",
-  "DFD-SG-08B",
-  "DFD-SG-08C",
-  "DFD-SG-09B",
-  "DFD-SG-09C",
-  "DFD-SG-11C",
-  "DFD-SG-12B",
-  "DFD-SG-12C",
-  "DFD-SG-13B",
-  "DFD-SG-14B",
-  "DFD-SG-15B",
-  "DFD-SG-16B",
-  "DFD-SG-17B",
-  "DFD-SG-18B",
-  "DFD-SG-30B",
-  "DFD-SG-30C",
-  "DFD-SG-31B",
-  "DFD-SG-31C",
-  "DFD-SG-32B",
-  "DFD-SG-33B",
-  "DFD-SG-34B",
-  "DFD-SG-35B",
-  "DFD-SI-01C",
-  "DFD-SI-01D",
-  "DFD-SI-02C",
-  "DFD-SI-02D",
-  "DFD-SI-03D",
-  "DFD-SI-04D",
-  "DFD-SI-05B",
-  "DFD-SI-05D",
-  "DFD-SI-06B",
-  "DFD-SI-06C",
-  "DFD-SI-07B",
-  "DFD-SI-08B",
-  "DFD-SI-09C",
-  "DFD-SI-10C",
-  "DFD-SI-13B",
-  "DFD-SI-14B",
-  "DFD-SI-15B",
-  "DFD-SI-16B",
-  "DFD-SI-17B",
-  "DFJ-AI-01C",
-  "DFJ-AI-14B",
-  "DFJ-AI-14C",
-  "DFJ-AI-21B",
-  "DFJ-AI-22B",
-  "DFJ-AP-01B",
-  "DFJ-AP-01C",
-  "DFJ-AP-01D",
-  "DFJ-AP-02B",
-  "DFJ-AP-02C",
-  "DFJ-AP-02D",
-  "DFJ-AP-03B",
-  "DFJ-AP-03C",
-  "DFJ-AP-04B",
-  "DFJ-AP-04C",
-  "DFJ-AP-05C",
-  "DFJ-AP-05D",
-  "DFJ-AP-06B",
-  "DFJ-AP-06C",
-  "DFJ-AP-07C",
-  "DFJ-AP-08B",
-  "DFJ-AP-08C",
-  "DFJ-AP-09B",
-  "DFJ-AP-09C",
-  "DFJ-AP-10B",
-  "DFJ-AP-10C",
-  "DFJ-AP-11B",
-  "DFJ-AP-11C",
-  "DFJ-AP-12C",
-  "DFJ-AP-13B",
-  "DFJ-AP-13C",
-  "DFJ-AP-14B",
-  "DFJ-AP-14C",
-  "DFJ-AP-15B",
-  "DFJ-AP-15C",
-  "DFJ-AP-16B",
-  "DFJ-AP-16C",
-  "DFJ-AP-17B",
-  "DFJ-AP-18B",
-  "DFJ-AP-19B",
-  "DFJ-AP-20B",
-  "DFJ-AP-21B",
-  "DFJ-AP-22B",
-  "DFJ-AP-30B",
-  "DFJ-AP-30C",
-  "DFJ-AP-31B",
-  "DFJ-AP-31C",
-  "DFJ-AP-32B",
-  "DFJ-AP-32C",
-  "DFJ-AP-33B",
-  "DFJ-AP-33C",
-  "DFJ-AP-34B",
-  "DFJ-AP-35B",
-  "DFJ-EP-01B",
-  "DFJ-EP-01D",
-  "DFJ-EP-02B",
-  "DFJ-EP-02D",
-  "DFJ-LC-01B",
-  "DFJ-LE-01B",
-  "DFJ-LE-02B",
-  "DFJ-LR-02B",
-  "DFJ-LR-03B",
-  "DFJ-PD-01B",
-  "DFJ-PD-02B",
-  "DFJ-PD-03B",
-  "DFJ-PD-04B",
-  "DFJ-PD-05B",
-  "DFJ-PD-06B",
-  "DFJ-PD-10B",
-  "DFJ-PD-13B",
-  "DFJ-PD-15B",
-  "DFJ-PD-18B",
-  "DFJ-PK-01B",
-  "DFJ-RD-01C",
-  "DFJ-RD-02C",
-  "DFJ-RD-03C",
-  "DFJ-RD-04C",
-  "DFJ-RD-06C",
-  "DFJ-RD-07C",
-  "DFJ-RD-08B",
-  "DFJ-RD-08C",
-  "DFJ-RD-10C",
-  "DFJ-RD-11C",
-  "DFJ-RD-12C",
-  "DFJ-RD-13B",
-  "DFJ-RD-14B",
-  "DFJ-RD-15C",
-  "DFJ-RD-16C",
-  "DFJ-RD-18B",
-  "DFJ-RD-20B",
-  "DFJ-RD-21B",
-  "DFJ-RT-16B",
-  "DFJ-SG-01B",
-  "DFJ-SG-01C",
-  "DFJ-SG-01D",
-  "DFJ-SG-02B",
-  "DFJ-SG-02C",
-  "DFJ-SG-02D",
-  "DFJ-SG-03B",
-  "DFJ-SG-03C",
-  "DFJ-SG-03D",
-  "DFJ-SG-04B",
-  "DFJ-SG-04C",
-  "DFJ-SG-04D",
-  "DFJ-SG-05B",
-  "DFJ-SG-05C",
-  "DFJ-SG-05D",
-  "DFJ-SG-06B",
-  "DFJ-SG-06C",
-  "DFJ-SG-07C",
-  "DFJ-SG-08B",
-  "DFJ-SG-08C",
-  "DFJ-SG-09B",
-  "DFJ-SG-09C",
-  "DFJ-SG-10B",
-  "DFJ-SG-10C",
-  "DFJ-SG-11B",
-  "DFJ-SG-11C",
-  "DFJ-SG-12C",
-  "DFJ-SG-13B",
-  "DFJ-SG-13C",
-  "DFJ-SG-14B",
-  "DFJ-SG-14C",
-  "DFJ-SG-15B",
-  "DFJ-SG-15C",
-  "DFJ-SG-16B",
-  "DFJ-SG-16C",
-  "DFJ-SG-17B",
-  "DFJ-SG-18B",
-  "DFJ-SG-19B",
-  "DFJ-SG-20B",
-  "DFJ-SG-21B",
-  "DFJ-SG-22B",
-  "DFJ-SG-30B",
-  "DFJ-SG-30C",
-  "DFJ-SG-31B",
-  "DFJ-SG-31C",
-  "DFJ-SG-32B",
-  "DFJ-SG-32C",
-  "DFJ-SG-33B",
-  "DFJ-SG-33C",
-  "DFJ-SG-34B",
-  "DFJ-SG-34C",
-  "DFJ-SG-35B",
-  "DFJ-SG-35C",
-  "DFJ-SG-36B",
-  "DFJ-SG-36C",
-  "DFJ-SG-37B",
-  "DFJ-SG-37C",
-  "DFJ-SG-38B",
-  "DFJ-SG-39B",
-  "DFJ-SI-01C",
-  "DFJ-SI-01D",
-  "DFJ-SI-02B",
-  "DFJ-SI-02C",
-  "DFJ-SI-02D",
-  "DFJ-SI-03B",
-  "DFJ-SI-03C",
-  "DFJ-SI-03D",
-  "DFJ-SI-04D",
-  "DFJ-SI-05C",
-  "DFJ-SI-05D",
-  "DFJ-SI-06B",
-  "DFJ-SI-06C",
-  "DFJ-SI-08C",
-  "DFJ-SI-09B",
-  "DFJ-SI-10B",
-  "DFJ-SI-10C",
-  "DFJ-SI-12C",
-  "DFJ-SI-13B",
-  "DFJ-SI-13C",
-  "DFJ-SI-14B",
-  "DFJ-SI-14C",
-  "DFJ-SI-15C",
-  "DFJ-SI-21B",
-  "DFJ-SI-22B",
-  "DFJ-SP-07C",
-  "DFM-AP-01B",
-  "DFM-AP-01C",
-  "DFM-AP-02C",
-  "DFM-AP-04C",
-  "DFM-AP-05C",
-  "DFM-AP-30B",
-  "DFM-AP-30C",
-  "DFM-AP-31B",
-  "DFM-AP-31C",
-  "DFM-AP-32B",
-  "DFM-AP-32C",
-  "DFM-AP-33B",
-  "DFM-AP-33C",
-  "DFM-AP-34B",
-  "DFM-AP-34C",
-  "DFM-AP-35C",
-  "DFM-PD-07B",
-  "DFM-PD-08B",
-  "DFM-PD-10B",
-  "DFM-PD-11B",
-  "DFM-PD-12B",
-  "DFM-RD-01B",
-  "DFM-RD-01C",
-  "DFM-RD-03B",
-  "DFM-RD-03C",
-  "DFM-RD-05C",
-  "DFM-RD-06B",
-  "DFM-RD-06C",
-  "DFM-RD-07B",
-  "DFM-RD-07C",
-  "DFM-RD-08B",
-  "DFM-RD-09B",
-  "DFM-RD-10B",
-  "DFM-RD-12B",
-  "DFM-RD-13B",
-  "DFM-SG-01B",
-  "DFM-SG-01C",
-  "DFM-SG-02B",
-  "DFM-SG-02C",
-  "DFM-SG-03B",
-  "DFM-SG-03C",
-  "DFM-SG-04B",
-  "DFM-SG-04C",
-  "DFM-SG-05C",
-  "DFM-SG-06B",
-  "DFM-SG-06C",
-  "DFM-SG-07B",
-  "DFM-SG-07C",
-  "DFM-SG-08B",
-  "DFM-SG-09B",
-  "DFM-SG-10B",
-  "DFM-SG-11B",
-  "DFM-SG-12B",
-  "DFM-SG-13B",
-  "DFM-SG-30B",
-  "DFM-SG-31B",
-  "DFM-SG-31C",
-  "DFM-SG-33C",
-  "DFM-SI-01B",
-  "DFM-SI-04C",
-  "DFM-SI-10B",
-];
+    <div class="form-group">
+      <label for="data">Data</label>
+      <input type="date" id="data">
+    </div>
 
-const materiaisLista = [
-  { codigo: "310626", descricao: "CABO,AÇO-CU,RD CU,3X 8AWG,53%,LC,D21303", un: "KG" },
-  { codigo: "330768", descricao: "FIO AL P/AMARRACAO 6AWG-D76001", un: "KG" },
-  { codigo: "310567", descricao: "CABO COBRE NU 35MM2 M DURA CL2A", un: "KG" },
-  { codigo: "310591", descricao: "FIO,CU NU;16MM2;MD;D210.01", un: "KG" },
-  { codigo: "310569", descricao: "CABO,CU NU, 95MM2,19F,MEIO-DURO,GSC003", un: "KG" },
-  { codigo: "310625", descricao: "CABO,AÇO-CU,RD CU,3X10AWG,53%,LC,D21303", un: "KG" },
-  { codigo: "310574", descricao: "CABO,NU CAA, 4AWG,6/1F,SWAN,GSC003,FP", un: "KG" },
-  { codigo: "990257", descricao: "CONEC,PERF,AL-CU,50-150,2,5-35,GSCC020/9", un: "PEÇ" },
-  { codigo: "310605", descricao: "CABO,NU,CAA,CL.A,1/0AWG,RAVEN,GSC003", un: "KG" },
-  { codigo: "310652", descricao: "CABO,NU,CAA,CL.A,266MCM,PARTRIDGE,GSC003", un: "KG" },
-  { codigo: "340348", descricao: "FIO, ELETRICO, ISOLADO, COBRE 750V", un: "M" },
-  { codigo: "310604", descricao: "CABO,NU,CAA,CL.A,4AWG,SWAN,GSC003", un: "KG" },
-  { codigo: "310627", descricao: "CABO,AÇO-CU,RD CU,7X10AWG,53%,LC,D21303", un: "KG" },
-  { codigo: "111283", descricao: "TD,3P,13.8-0.38/0.22kV,75KVA,GST01/604", un: "UN" },
-  { codigo: "330800", descricao: "CB PRE-REU CU 3X16+16,XLPE,1kV,D208.15", un: "M" },
-  { codigo: "274921", descricao: "CONECTOR,CUN,BIM,MOD.VII,D71039", un: "UN" },
-  { codigo: "231228", descricao: "POSTE,CONCRETO,DT,9/300DAN,GSS002", un: "UN" },
-  { codigo: "141266", descricao: "SEC,UNIPOLAR,24KV,400A,438MM,D198.03", un: "UN" },
-  { codigo: "251969", descricao: "SUPORTE,SEC UNIPOLAR,TIPO 2,PM-BR480.02", un: "PEÇ" },
-  { codigo: "300853", descricao: "ISOLADOR POLIM ANCORAGEM,24kV,GSCC010", un: "PEÇ" },
-  { codigo: "251814", descricao: "GANCHO-OLHAL,AZ,SUSP,5000DAN,D51004.0", un: "UN" },
-  { codigo: "251817", descricao: "MANILHA,SAPATILHA,AZ,5000DAN,D51003.0", un: "UN" },
-  { codigo: "251767", descricao: "ALCA,DIST,ACO,PREF,1/0AWG,CAA,D730.14", un: "UN" },
-  { codigo: "231233", descricao: "POSTE,CONCRETO,DT,12/600DAN,GSS002", un: "UN" },
-  { codigo: "251884", descricao: "BRACO,TIPO L,13,8KV,354MM,D456.01", un: "PEÇ" },
-  { codigo: "240099", descricao: "ARMAÇÃO;SEC;AZ;2ESTR;C/HASTE;D520.01.0", un: "UN" },
-  { codigo: "231342", descricao: "CRUZETA,POLIM,1900MM,MEIO-BECO,D315.01", un: "UN" },
-  { codigo: "111290", descricao: "TD,3P,13.8-0.38/0.22kV,150KVA,GST01/606", un: "UN" },
-  { codigo: "860342", descricao: "FITA,ISOL,ADE,PRETA,19MMX20M,PM-BR220.01", un: "RLL" },
-  { codigo: "231353", descricao: "CRUZETA,POLIM,1700MM,BECO,D315.01", un: "UN" },
-  { codigo: "251765", descricao: "ALCA,PREF,AÇO,PRE-REUN,CA,54.6MM2,D73006", un: "UN" },
-  { codigo: "251786", descricao: "LACO,PREF,AÇO,PRE-REUN,54.6MM2,D73006", un: "UN" },
-  { codigo: "850383", descricao: "HASTE,ATERR,AÇO-COBR,1/2\",2000MM,D80001", un: "UN" },
-  { codigo: "275194", descricao: "CONECT,CUN,ATER,3X10,HASTE 13MM,PM71040", un: "UN" },
-  { codigo: "251782", descricao: "ALÇA,PREF,AZ,BI,CONCENT,6MM2,D730.05.0", un: "UN" },
-  { codigo: "130866", descricao: "PORTA FUSIVEL,15KV,TIPO C,100A,ET-277;;;", un: "PEÇ" },
-  { codigo: "171078", descricao: "PORTA FUSIVEL,27KV,TIPO C,100A,ET-277", un: "UN" },
-  { codigo: "231238", descricao: "POSTE,CONCRET,DT,12/1000DANB-1.5,GSS002", un: "UN" },
-  { codigo: "275310", descricao: "EMENDA,AUTOM,AL,5.82-8.64MM,D72014", un: "PEÇ" },
-  { codigo: "251764", descricao: "ALCA,DIST,ACO,PREF,4AWG,CAA,D730.14", un: "UN" },
-  { codigo: "231235", descricao: "POSTE,CONCRETO,DT,9/600DAN,GSS002", un: "UN" },
-  { codigo: "231345", descricao: "POSTE,FIBRA VIDRO, 9M,300DAN,D307.01", un: "UN" },
-  { codigo: "130758", descricao: "SECIONADOR,FUSIVEL,UNIPOLAR,BT,ETA133", un: "PEÇ" },
-  { codigo: "330787", descricao: "CB PRE-REU CU 3X35+35,XLPE,1kV,D208.15", un: "M" },
-  { codigo: "860330", descricao: "FITA,ISOL,EPR,AUTOFUS,19MMX10M,D22002.1", un: "UN" },
-  { codigo: "251775", descricao: "ALCA,PREF,DIST,CU-NU,25MM2,7F,D73001,FPM", un: "UN" },
-  { codigo: "171086", descricao: "CHAVE,FUS,INOX,27KV,100A,C,POLIM,ET-277", un: "UN" },
-  { codigo: "251841", descricao: "SUPORTE,L,AZ,CH.FUS/PR,198MM,D410.35", un: "PEÇ" },
-  { codigo: "640671", descricao: "CANALETA,METÁLIC,CONDUTOR MT,D64211.0", un: "UN" },
-  { codigo: "300644", descricao: "ISOLADOR POLI PILAR,FUG PRO,24kV,GSCC010", un: "UN" },
-  { codigo: "231351", descricao: "POSTE,FIBRA VIDRO,12M, 600DAN,D307.01", un: "UN" },
-  { codigo: "171098", descricao: "ELO,FUS,DISTRIB,15/36KV,20A,K;D138.01", un: "UN" },
-  { codigo: "171100", descricao: "ELO,FUS,DISTRIB,15/36KV,30A,K,D138.01", un: "UN" },
-  { codigo: "171103", descricao: "ELO,FUS,DISTRIB,15/36KV,65A,K,D138.01", un: "UN" },
-  { codigo: "171101", descricao: "ELO,FUS,BOT,15KV,40A,K,D13801.6;FP", un: "UN" },
-  { codigo: "274649", descricao: "CONEC,TERM,RETO,2F,CU,6-750,D710.17", un: "UN" },
-  { codigo: "111291", descricao: "TD,3P,13.8-0.38/0.22kV,225KVA,GST01/607", un: "UN" },
-  { codigo: "251769", descricao: "ALCA,DIST,ACO,PREF,266.8MCM,CAA,D730.14", un: "UN" },
-  { codigo: "274913", descricao: "CONECTOR,CUN,AL,266TR,4/0DR,D71054,FP", un: "UN" },
-  { codigo: "275282", descricao: "CONEC,TERM,TORQ,BIM,35-185MM2,1F,D71063", un: "UN" },
-  { codigo: "111292", descricao: "TD,3P,13.8-0.38/0.22kV,300KVA,GST01/608", un: "UN" },
-  { codigo: "171122", descricao: "CHAVE,FUS,AZ,15KV,100A,C,POLIM,ET-277", un: "PEÇ" },
-  { codigo: "171075", descricao: "ELO,FUS,BOT,15/36KV,0,5A,H;D138.01", un: "UN" },
-  { codigo: "231260", descricao: "CRUZETA,CONC,1900MM,MEIO BECO,ET-314", un: "UN" },
-  { codigo: "231341", descricao: "CRUZETA,POLIM,1900MM,NORMAL,D315.01", un: "UN" },
-  { codigo: "171063", descricao: "LAMINA DESLIG,TIPO C,27KV,300A,D19806", un: "UN" },
-  { codigo: "111927", descricao: "TRAFO,3;AL;112,5KVA;13,8/380-220;EMT9,FP", un: "UN" },
-  { codigo: "171093", descricao: "ELO,FUS,DISTRIB,15/36KV,6A,K,D138.01", un: "UN" },
-  { codigo: "274914", descricao: "CONEC,CUN,CU,I5,R12.50MM-D12.50MM,D71055", un: "UN" },
-  { codigo: "171083", descricao: "FUSIVEL,NH,TIPO FACA,250A 14KA,GSCL4/29", un: "UN" },
-  { codigo: "780653", descricao: "PARAFUSO,CAB QUAD,AZ,16X200,D41010", un: "UN" },
-  { codigo: "275361", descricao: "CONECTOR,CUN,BIM,MOD.VIII,D71039", un: "UN" },
-  { codigo: "231242", descricao: "POSTE,CONC,DT,20/1000DAN,PM-BR314.01", un: "UN" },
-  { codigo: "300662", descricao: "ISOLADOR POLIM PILAR HIBR,24kV,GSCC010", un: "UN" },
-  { codigo: "780656", descricao: "PARAFUSO,CAB QUAD,AZ,16X350,D41010", un: "UN" },
-  { codigo: "780710", descricao: "ARRUELA,QUADRADA,AZ, 50X3X18MM,D41003", un: "UN" },
-  { codigo: "300647", descricao: "ISOLADOR,ROLDANA,PORC,79X76,D500.54.0", un: "UN" },
-  { codigo: "275009", descricao: "ABRAÇ,PLÁST,1.8X7.6X390MM,PM-BR761.01", un: "UN" },
-  { codigo: "276661", descricao: "CONEC,PERF,AL-CU,35-150TR/DR,GSCC020;", un: "UN" },
-  { codigo: "171081", descricao: "PORTA,FUS,BASE C,17,5KV,100A,10KA,FP", un: "UN" },
-  { codigo: "171095", descricao: "ELO,FUS,BOT,15KV, 10A,K,D13801.4;FP", un: "UN" },
-  { codigo: "780759", descricao: "PARAFUSO,CAB QUAD,AZ,16X150,D41010", un: "PEÇ" },
-  { codigo: "171082", descricao: "FUSIVEL,NH,TIPO FACA,160A,7.8KA,GSCL4/19", un: "UN" },
-  { codigo: "171104", descricao: "ELO,FUS,DISTRIB,15/36KV,80A,K,D138.01", un: "UN" },
-  { codigo: "171126", descricao: "ELO,FUS,DISTRIB,15/36KV,3A,K,D138.01", un: "UN" },
-  { codigo: "274920", descricao: "CONECTOR,CUN,BIM,MOD.VI,D71039", un: "UN" },
-  { codigo: "274903", descricao: "CONECTOR,CUN,BIM,MOD.I,D71039", un: "UN" },
-  { codigo: "231350", descricao: "POSTE,FIBRA VIDRO,12M, 300DAN,D307.01", un: "UN" },
-  { codigo: "251783", descricao: "ALÇA,PREF,AZ,BI,CONCENT,10MM2,D730.05.0", un: "UN" },
-  { codigo: "780655", descricao: "PARAFUSO,CAB QUAD,AZ,16X300,D41010", un: "UN" },
-  { codigo: "231253", descricao: "CRUZETA,CONC,1900MM,T,ET-314", un: "UN" },
-  { codigo: "164612", descricao: "FUSIVEL,NH,TIPO FACA,200A,10.5KA,GSCL4/2", un: "UN" },
-  { codigo: "171105", descricao: "ELO,FUS,DISTRIB,15/36KV,100A,K,D138.01", un: "UN" },
-  { codigo: "251777", descricao: "ALCA,DISTRIB,CU-NU, 35MM2,D73001,FPM", un: "UN" },
-  { codigo: "330326", descricao: "CABO,CONCENTR,0.6/1.0,1x6+6A,D230.10", un: "M" },
-  { codigo: "130715", descricao: "DISJ,MINI,3P 125A 10KA 400VCA E-BT-004", un: "UN" },
-  { codigo: "171094", descricao: "ELO,FUS,DISTRIB,15/36KV,8A,K,D138.01", un: "UN" },
-  { codigo: "164943", descricao: "CRUZETA,POLIM,2400MM,RETANG,D315.01", un: "UN" },
-  { codigo: "780654", descricao: "PARAFUSO,CAB QUAD,AZ,16X250,D41010", un: "UN" },
-  { codigo: "990243", descricao: "PARA-RAIOS,DH,T,POL,12KV,E,GSCC016/03", un: "PEÇ" },
-  { codigo: "171118", descricao: "ELO,FUS,DISTRIB,15/36KV,15A,K,D138.01", un: "PEÇ" },
-  { codigo: "275117", descricao: "CONECTOR,CUN,BIM,A266-160R,C95D,D71039", un: "UN" },
-  { codigo: "201373", descricao: "PINO,TOPO;AZ;ISOL 25KV;419MM;D51501.3", un: "UN" },
-  { codigo: "274950", descricao: "CONEC,CUN,CU,I2,R10.60MM-D10.60MM,D71055", un: "UN" },
-  { codigo: "111281", descricao: "TD,3P,13.8-0.38/0.22kV,45KVA,GST01/603", un: "UN" },
-  { codigo: "171096", descricao: "ELO,FUS,DISTRIB,15/36KV,12A,K,D138.01", un: "UN" },
-  { codigo: "860344", descricao: "FITA,ISOL,AUTOFUS,19MMX10M,PM-BR220.02", un: "M" },
-  { codigo: "111277", descricao: "TD,2P,13.8-0.22kV,10KVA,GST01/601", un: "UN" },
-  { codigo: "275311", descricao: "EMENDA,AUTOM,AL,9.27-12.07MM,D72014", un: "PEÇ" },
-  { codigo: "251774", descricao: "ALCA,PREF,DIST,CU-NU, 70MM2,D73001,FPM", un: "UN" },
-  { codigo: "231250", descricao: "CRUZETA,CONC,1700MM,BECO,ET-314", un: "UN" },
-  { codigo: "171092", descricao: "ELO,FUS;BOT;15KV;5A;H;D13801.4;FP", un: "UN" },
-  { codigo: "251893", descricao: "SAPATILHA,AZ,ALCA PREFORMADA,D510.02", un: "PEÇ" },
-  { codigo: "275315", descricao: "EMENDA,AUTOM,AL,22.33-26.42MM,D72014", un: "PEÇ" },
-  { codigo: "252347", descricao: "ALCA,PREF,AÇO,2AWG,CA/CAA,D730.14,FPM", un: "UN" },
-  { codigo: "780657", descricao: "PARAFUSO,CAB QUAD,AZ,16X400,D41010", un: "UN" },
-  { codigo: "780706", descricao: "PORCA,QUAD;AZ;M12X1,75;D41004", un: "UN" },
-  { codigo: "275244", descricao: "CONEC,TERM,TORQ,BIM,35-185MM2,2F,D71063", un: "UN" },
-  { codigo: "251776", descricao: "ALCA,PREF,DISTRIB,CU-NU,95MM2,D73001,FPM", un: "UN" },
-  { codigo: "850402", descricao: "HASTE,ATERR,AÇO-COBR,1/2\",1500MM,D80001", un: "UN" },
-  { codigo: "240123", descricao: "MÃO,FRANCESA,AZ,PERFILADA,1971MM,FP", un: "UN" },
-  { codigo: "275166", descricao: "CONECTOR,CUN,BIM,A266-160R,C35D,D71039", un: "UN" },
-  { codigo: "171097", descricao: "ELO,FUS,BOT,15KV,15A,K,D13801.4;FP", un: "UN" },
-  { codigo: "275076", descricao: "CONEC.CUN,ESTRIBO,C16-35,A4,SP35,D71071", un: "UN" },
-  { codigo: "171102", descricao: "ELO,FUS,BOT,15KV, 50A,K,D13801.6;FP", un: "UN" },
-  { codigo: "201483", descricao: "CONEC,TERM,TORQ,BIM,240MM2,2F,D71063", un: "UN" },
-  { codigo: "330803", descricao: "CABO,AL,25KV,SPA,2C,BLQ,240MM2,D21105,FP", un: "M" },
-  { codigo: "274804", descricao: "CONECTOR,TERM,PINO M16,1X35-185,D71059.0", un: "UN" },
-  { codigo: "275505", descricao: "CARTUCHO,POLIETILENO,AZUL,PM-BR710.66", un: "UN" },
-  { codigo: "300660", descricao: "ISOLADOR,PINO,POLIM,25KV,25MM;D500.22.0", un: "UN" },
-  { codigo: "141296", descricao: "SEC,UNIPOLAR,17,5KV,400A,350MM,D198.03", un: "PEÇ" },
-  { codigo: "252049", descricao: "LAÇO PREF,LIGA AL,PRE-REU 54.6MM2,D73006", un: "PEÇ" },
-  { codigo: "275112", descricao: "CONECTOR,TERM,COMPR,CU, 70MM2,2F,D71048", un: "UN" },
-  { codigo: "274987", descricao: "CONEC,CUN,AL,I9,D=23.77-27.71MM,D71054", un: "PEÇ" },
-  { codigo: "275313", descricao: "EMENDA,AUTOM,AL,14.73-18-.39MM,D72014", un: "PEÇ" },
-  { codigo: "171091", descricao: "ELO,FUS;BOT;15KV;3A;H;D13801.4;FP", un: "UN" },
-  { codigo: "780912", descricao: "PARAF,SEXT,INOX,M12X60,D41019", un: "UN" },
-  { codigo: "780658", descricao: "PARAFUSO,CAB QUAD,AZ,16X450,D41010", un: "UN" },
-  { codigo: "274949", descricao: "CONECTOR,HASTE ATERR;14,30MM", un: "UN" },
-  { codigo: "274915", descricao: "CONEC,CUN,CU,I4,R12.50MM-D7.50MM,D71055", un: "UN" },
-  { codigo: "275192", descricao: "CONECTOR,CUN,BIM,C25-35R,AM95-S70D,71039", un: "UN" },
-  { codigo: "251797", descricao: "OLHAL,AZ,5000DAN,M16,PM-BR/D41005.1", un: "UN" },
-  { codigo: "251780", descricao: "ALCA,LIGA AL,PRE-REU CU,35MM2,D73006,FPM", un: "UN" },
-  { codigo: "330994", descricao: "CABO BT PRE-REUN AL 3X50+54.6,GSCC009/10", un: "M" },
-  { codigo: "251966", descricao: "ESPAÇADOR,LOSAN,RD SPACER,25KV,D53001", un: "UN" },
-  { codigo: "780709", descricao: "ARRUELA,QUADRADA,AZ, 50X5X22MM,D41003", un: "UN" },
-  { codigo: "780720", descricao: "ARRUELA,REDONDA,AZ,32.43X3X18MM,D41001", un: "UN" },
-  { codigo: "780708", descricao: "PORCA,QUAD;AL;M16X2;D90405.0", un: "UN" },
-  { codigo: "275125", descricao: "CONEC,TERM,95 A 120MM²,A2/0-4/0,PM-BR710", un: "UN" },
-  { codigo: "310568", descricao: "CABO,CU NU, 70MM2,19F,MEIO-DURO,GSC003", un: "KG" },
-  { codigo: "275159", descricao: "CONECTOR,CUN,BIM,A1/0-70-S70R,C95D,71039", un: "UN" },
-  { codigo: "274988", descricao: "CONEC,CUN,AL,I11,D=30.18-34.71MM,D71054", un: "PEÇ" },
-  { codigo: "780707", descricao: "PORCA,QUAD;AZ;M16X2,00;D41004", un: "UN" },
-  { codigo: "252042", descricao: "ALÇA,DIST,PRE,COBERTO,240MM2,D73014,FPM", un: "UN" },
-  { codigo: "780652", descricao: "PARAFUSO,CAB QUAD;AZ;16X150;D41010.3,FP", un: "UN" },
-  { codigo: "310629", descricao: "CABO,AÇO-CU,RD CU,7X 6AWG,53%,LC,D21303", un: "KG" },
-  { codigo: "274909", descricao: "CONEC,CUN,CU,I7,R13.41MM-D13.41MM,D71055", un: "UN" },
-  { codigo: "164706", descricao: "CAIXA DERIVAÇÃO 160A - GSCC019/1", un: "PEÇ" },
-  { codigo: "240116", descricao: "ARMAÇÃO,SEC;AZ;1ESTR;C/HASTE;D520.01.0", un: "PEÇ" },
-  { codigo: "800258", descricao: "LAMINA DESLIG,TIPO C,17.5KV,300A,D19806", un: "PEÇ" },
-  { codigo: "274629", descricao: "CARTUCHO,POLIETILENO,BRANCA,PM-BR710.66", un: "UN" },
-  { codigo: "275202", descricao: "CONEC,CUN,AL,I12,D=32.50-37.00MM,D71054", un: "PEÇ" },
-  { codigo: "275695", descricao: "CONEC,PERF,AL-CU,25-120TR/DR,GSCC020", un: "PEÇ" },
-  { codigo: "275694", descricao: "CONEC,PERF,AL-CU,16-95TR,4-35DR,GSCC020", un: "PEÇ" },
-  { codigo: "251939", descricao: "ALCA,PREF,AÇO,PRE-REUN,CA,25MM2,D73006", un: "UN" },
-  { codigo: "275314", descricao: "EMENDA,AUTOM,AL,18.8-21.8MM,D72014", un: "PEÇ" },
-  { codigo: "274916", descricao: "CONEC,CUN,CU,I3,R12.50MM-D6.18MM,D71055", un: "UN" },
-  { codigo: "275124", descricao: "CONEC,TERM,50 A 70MM²,A1/0-2/0,PM-BR710.", un: "UN" },
-  { codigo: "990254", descricao: "EMENDA 12/20KV (24) 95-240MM GSC004/4", un: "UN" },
-  { codigo: "780672", descricao: "PARAFUSO,CAB QUAD,AZ,12X200,D41011.5", un: "UN" },
-  { codigo: "310552", descricao: "CABO,ACO-CU,ATERR,35MM²,D805.02", un: "KG" },
-  { codigo: "310576", descricao: "CABO,NU,CAA,CL.B,1/0AWG,RAVEN,GSC003", un: "KG" },
-  { codigo: "251935", descricao: "LAÇO,PREF,MENS,CORD,ACO,9.5MM,D730.04", un: "PEÇ" },
-  { codigo: "310566", descricao: "CABO,CU NU, 25MM2,7F,MEIO-DURO,GSC003", un: "KG" },
-  { codigo: "164518", descricao: "CAIXA,PROTECAO SECUNDARIA,POLICARBONATO,", un: "UN" },
-  { codigo: "330736", descricao: "CABO,PRE-REU,BT,CU,3X95-1X50,EBT002.4,FP", un: "M" },
-  { codigo: "274905", descricao: "CONECTOR,CUN,BIM,MOD.III,D71039", un: "UN" },
-  { codigo: "252023", descricao: "ALÇA,PREF,AZ,BI,CONCENT,16MM2,D730.05.0", un: "PEÇ" },
-  { codigo: "251965", descricao: "ESPAÇADOR,BT-MT,2-336,TIPO1,PM-BR530.03", un: "PEÇ" },
-  { codigo: "251779", descricao: "ALCA,LIGA AL,PRE-REU CU,16MM2,D73006,FPM", un: "UN" },
-  { codigo: "780713", descricao: "ARRUELA,QUADRADA,AL,50X3X18MM,D90402", un: "UN" },
-  { codigo: "274904", descricao: "CONECTOR,CUN,BIM,MOD.II,D71039", un: "UN" },
-  { codigo: "274902", descricao: "CONECTOR,CUN,AL,477-556-315TR/DR,D71054", un: "UN" },
-  { codigo: "251784", descricao: "ALCA,DIST,AÇO,PRE,336.4MCM,CA,D73014,FP", un: "UN" },
-  { codigo: "251986", descricao: "ESPAÇADOR,BT,2-336, PM-R2182,FP", un: "UN" },
-  { codigo: "251798", descricao: "OLHAL,AZ,12000DAN,M20,PM-BR/D41005.1", un: "UN" },
-  { codigo: "171089", descricao: "ELO,FUS,DISTRIB,15/36KV,1A,H;D138.01", un: "UN" },
-  { codigo: "171099", descricao: "ELO,FUS,BOT,15KV,25A,K,D13801.6;FP", un: "UN" },
-  { codigo: "275185", descricao: "CONECT,CUN,ATER,7X10,HASTE 13MM,PM71040", un: "UN" },
-  { codigo: "860327", descricao: "FITA,ISOL,ANTICH,19MMX20M,PRETA,D22001.1", un: "RLL" },
-  { codigo: "275364", descricao: "CONEC,CUN,AL,I6,D=28.70-24,28MM,D71054", un: "UN" },
-  { codigo: "231319", descricao: "CRUZETA,MADEIRA,2400X110X90MM,D31601BLOQ", un: "UN" },
-  { codigo: "171108", descricao: "SUPORTE,AZ,P/3 SEC FUS UNIP BT,ET133", un: "UN" },
-  { codigo: "275077", descricao: "CONEC,CUN,AL,I8,D=21.77-25.68MM,D71054", un: "PEÇ" },
-  { codigo: "275040", descricao: "TERMINAL,EXT,12/20kV,95-240MM2,GSCC-005", un: "PEÇ" },
-  { codigo: "275010", descricao: "ABRAÇ,PLÁST,2X8.9X770MM,PM-BR761.01", un: "PEÇ" },
-  { codigo: "310562", descricao: "CONECTOR,ESPACADOR;CU;2X300MM2;ET710", un: "UN" },
-  { codigo: "251878", descricao: "GRAMPO,LINHA VIVA,EM ESTRIBO,230A,D71070", un: "PEÇ" },
-  { codigo: "164613", descricao: "FUSIVEL,NH,TIPO FACA,125A,6KA,GSCL4/18", un: "UN" },
-  { codigo: "275203", descricao: "CONEC,CUN,AL,I7,D=21.84-27.08MM,D71054", un: "PEÇ" },
-  { codigo: "274922", descricao: "CONECTOR,CUN,BIM,MOD.VIII,D71039,FP", un: "UN" },
-  { codigo: "780671", descricao: "PARAFUSO,CAB QUAD,AZ,12X 50,D41011.5", un: "UN" },
-  { codigo: "274889", descricao: "TERMINAL,24KV,TERMOC,EXT,400MM2,GSCC5/2", un: "UN" },
-  { codigo: "163820", descricao: "SUPORTE,MUFLA,AZ,20-30,D46212", un: "UN" },
-  { codigo: "780724", descricao: "FITA,AÇO INOX,19X0.8MM,ROLO 25M,D65501", un: "M" },
-  { codigo: "780725", descricao: "FECHO,FITA,ACO INOX,19X0,8MM,D65505.3732", un: "UN" },
-  { codigo: "780646", descricao: "PARAFUSO,CAB QUAD,AL,M16X300,PM-BR904.10", un: "UN" },
-  { codigo: "780644", descricao: "PARAFUSO,CAB QUAD,AL,M16X200,PM-BR904.10", un: "UN" },
-  { codigo: "274918", descricao: "CONECTOR,CUN,BIM,MOD.IV,D71039", un: "UN" },
-  { codigo: "130694", descricao: "DISJUNTOR,TERM,1P, 63A,240-3.0kA,IR,EBT4", un: "UN" },
-  { codigo: "330993", descricao: "CABO BT PRE-REUN AL 3X35+54.6,GSCC009/09", un: "M" },
-  { codigo: "275176", descricao: "CONEC,TERM,TRAV,35MM²-2AWG,PM-BR710.74", un: "UN" },
-  { codigo: "171116", descricao: "ELO FUS,DISTRIB,15/36KV,10A,K,D138.01", un: "PEÇ" },
-  { codigo: "330984", descricao: "CABO BT PRE-REUN AL 3X95+54.6,GSCC009/12", un: "M" },
-  { codigo: "274897", descricao: "CONEC,TERM,RETO,4F,CU,6-636,D710.18", un: "UN" },
-  { codigo: "780647", descricao: "PARAFUSO,CAB QUAD,AL,M16X350,D1261,FP", un: "UN" },
-  { codigo: "251781", descricao: "ALÇA,PREF,AZ,BI,CONCENT,4MM2,D730.05.0", un: "UN" },
-  { codigo: "330325", descricao: "CABO,CONCENTR,0.6/1.0,1x10+10A,D230.10", un: "M" },
-  { codigo: "251763", descricao: "SAPATILHA,AZ,ALCA PREFORMADA,PMC51002,FP", un: "UN" },
-  { codigo: "111279", descricao: "TD,3P,13.8-0.38/0.22kV,15KVA,GST01/602", un: "UN" },
-  { codigo: "130702", descricao: "DISJUNTOR,TERM,3P, 63A,380-5.0kA,IC,EBT4", un: "UN" },
-  { codigo: "990343", descricao: "CABO,CONCENTR,0.6/1.0,2x10+6C,GSCC014/5", un: "M" },
-  { codigo: "330995", descricao: "CABO BT SUBT 1x70 mm² AL. XLPE-GSC002", un: "M" },
-  { codigo: "201376", descricao: "CONECTOR,ATERR,CU,16-70,D71025", un: "UN" },
-  { codigo: "141242", descricao: "BLOQUEADOR,CHAVE FUS;SECCION;EMS66", un: "UN" },
-  { codigo: "171113", descricao: "ELO,FUS,DISTRIB,15/36KV,5A,H,D138.01", un: "PEÇ" },
-  { codigo: "130716", descricao: "DISJUNTOR,TERM,1P,100A,240V/6KA,EBT004", un: "UN" },
-  { codigo: "780711", descricao: "ARRUELA,QUADRADA,AZ, 38X3X14MM,D41003", un: "UN" },
-  { codigo: "130756", descricao: "DISJUNTOR,TERM,1P,125A,240-4.5kA,IR,EBT4", un: "UN" },
-  { codigo: "111240", descricao: "TRAFO,RECUP,3F, 150KVA,13,8KV/380-220V", un: "UN" },
-  { codigo: "111239", descricao: "TRAFO,RECUP,3F, 112,5KVA,13,8KV/380-220V", un: "UN" },
-  { codigo: "274941", descricao: "CONECTOR,PARAL;CA 336.5MCM;CAA 4/0AWG;3", un: "UN" },
-  { codigo: "780755", descricao: "PARAFUSO,CAB ABAUL,AZ,16X150,D41015", un: "PEÇ" },
-  { codigo: "780650", descricao: "PARAFUSO,CAB QUAD,AL,M16X500,PM-BR904.10", un: "UN" },
-  { codigo: "780660", descricao: "PARAFUSO,CAB QUAD,AZ,16X500,D41010", un: "UN" },
-  { codigo: "310560", descricao: "CORDOALHA,ACO,ESTAI,9,5MM,7F,MR,D21203.4", un: "M" },
-  { codigo: "251785", descricao: "LACO,PREF TOPO,FIO ACO,3,09-3,26MM,FPM", un: "UN" },
-  { codigo: "330991", descricao: "CABO,AL,PRE-REU,8.7/15KV,3x50+50,GSCC008", un: "M" },
-  { codigo: "780712", descricao: "ARRUELA,QUADRADA,AZ,100X5X22MM,D41003", un: "UN" },
-  { codigo: "780645", descricao: "PARAFUSO,CAB QUAD,AL,M16X250,PM-BR904.10", un: "UN" },
-  { codigo: "310609", descricao: "CABO COBRE NU 16MM2 M DURA CL2A,D210.01", un: "KG" },
-  { codigo: "510565", descricao: "CONJ,MED,CXASIMPLES,15KV,3EL,50/5A,ET-89", un: "UN" },
-  { codigo: "310564", descricao: "CB,CU NU,120MM2,37F,MEIO-DURO,D21001", un: "KG" },
-  { codigo: "310577", descricao: "CABO,NU CA, 1/0AWG,7F,POPPY,D21101,FP", un: "KG" },
-  { codigo: "780714", descricao: "ARRUELA,REDONDA,AL,32.43X3X18MM,D90401", un: "UN" },
-  { codigo: "340247", descricao: "FIO,CU ISOL,PVC,750V, 6.0MM2,PRET,D20401", un: "M" },
-  { codigo: "201489", descricao: "CONECTOR,TERM,COMPR,CU,16MM2,2F,FP", un: "PEÇ" },
-  { codigo: "251771", descricao: "ALCA,PREF,CORD,ACO,9.5,MM,AR,D730.04", un: "UN" },
-  { codigo: "780648", descricao: "PARAFUSO,CAB QUAD,AL,M16X400,PM-BR904.10", un: "UN" },
-  { codigo: "780674", descricao: "PARAFUSO,CAB QUAD,AZ,12X300,D41011.5", un: "UN" },
-  { codigo: "201370", descricao: "PINO,AZ,190MM,ISOL 25KV,SPC,D51502,FP", un: "UN" },
-  { codigo: "275169", descricao: "CONECTOR CUNHA 70,00MM2/ 6,50MM", un: "UN" },
-  { codigo: "274917", descricao: "CONECTOR,CUN;CU;150TR;95DR;ET710,FP", un: "UN" },
-  { codigo: "274910", descricao: "CONEC,CUN,AL,336TR,266-336DR,D71054,FP", un: "UN" },
-  { codigo: "310565", descricao: "CABO,CU NU, 16MM2,7F,MEIO-DURO,D21001,FP", un: "KG" },
-  { codigo: "780659", descricao: "PARAFUSO,CAB QUAD,AZ,16X 50,D41010", un: "UN" },
-  { codigo: "240134", descricao: "SUPORTE,MUFLA,AZ,D30-40,D46212.0", un: "UN" },
-  { codigo: "251714", descricao: "SUPORTE,SUSP, CIRC,140-210MM,GSCC010", un: "UN" },
-  { codigo: "780649", descricao: "PARAFUSO,CAB QUAD,AL,M16X450,PM-BR904.10", un: "UN" },
-  { codigo: "251800", descricao: "ARMACAO,SEC;AL;1ESTR;C/HASTE;D90510.1", un: "UN" },
-  { codigo: "252192", descricao: "ALÇA,PREF,DIST,ACO,COBERTO,50MM2,D730.14", un: "UN" },
-  { codigo: "111241", descricao: "TRAFO,RECUP,3F, 225KVA,13,8KV/380-220V", un: "UN" },
-  { codigo: "330822", descricao: "CABO,CONCENT,AL,0,6/1KV,2X16MM2,EBT003.3", un: "M" },
-  { codigo: "780753", descricao: "PARAFUSO,CAB ABAUL,AZ,16X 45,D41015", un: "PEÇ" },
-  { codigo: "850333", descricao: "LENCOL, BORRACHA ISOLANTE, BT CLASS(USD)", un: "M" },
-  { codigo: "275103", descricao: "COBERTURA,ISOLANTE,15KV, 50-185MM2", un: "M" },
-  { codigo: "310578", descricao: "CABO,NU CAA,266.8MCM,26/7F,PAR,GSC003,FP", un: "KG" },
-  { codigo: "780718", descricao: "ARRUELA,REDONDA,AZ,22X2X12MM,D41001", un: "UN" },
-  { codigo: "274928", descricao: "CONECT,PA FEND,50-185/25-185,PM-BR710.35", un: "UN" },
-  { codigo: "111212", descricao: "TD,3P,13.8-0.38/0.22kV,112.5KVA,FP", un: "UN" },
-  { codigo: "780715", descricao: "ARRUELA,PRESSAO,AZ,18X3X13.5MM,D41002", un: "UN" },
-  { codigo: "330758", descricao: "CABO,PRE-R,BT,AL,3X 50-1X50,EBT002.48,FP", un: "M" },
-  { codigo: "780651", descricao: "PARAF,CAB ABAUL,LIGA AL,M16X45,D90415,FP", un: "UN" },
-  { codigo: "300645", descricao: "ISOL,CAST,PORC,60X40MM,C-1800-1,EBT005", un: "UN" },
-  { codigo: "780761", descricao: "PARAF.CAB.QUA200X120X16MM,DED0045 I4R4FP", un: "PEÇ" },
-  { codigo: "310571", descricao: "CABO,ACO-CU,ATERR,16MM²,D805.02", un: "KG" },
-  { codigo: "251819", descricao: "MANILHA,AZ,20MM,16000DAN,D51011.3", un: "UN" },
-  { codigo: "240100", descricao: "ARMACAO,SEC,AL,2ESTR,C/HASTE,D90511.1", un: "UN" },
-  { codigo: "231225", descricao: "POSTE,CONC DT;8M;300DAN;D (FP)", un: "UN" },
-  { codigo: "990291", descricao: "ISOL.PILAR,24kV,CLP5125NRM745,GSCC10/08", un: "PEÇ" },
-  { codigo: "231347", descricao: "POSTE,CONC,CIRC,10M,200DAN,COELCE PLUS", un: "UN" },
-  { codigo: "330826", descricao: "CABO,CU BLIND,CONTROLE, 7X2,5MM2,ET206.2", un: "M" },
-  { codigo: "310561", descricao: "PRESILHA,CABO ACO;1/4-3/8POL;D21503.1", un: "UN" },
-  { codigo: "111282", descricao: "TRAFO,3F; 45KVA;14,4KV/380-220V;FP", un: "UN" },
-  { codigo: "251940", descricao: "LACO,PREF,AÇO,PRE-REUN,25MM2,D73006", un: "UN" },
-];
+    <div class="form-group">
+      <label for="atendido-por">Atendido por</label>
+      <input type="text" list="atendentes-mro" id="atendido-por">
+      <datalist id="atendentes-mro"></datalist>
+    </div>
 
-const datalistAtendentes = document.getElementById("atendentes-mro");
-atendentesMRO.forEach(nome => {
-  const option = document.createElement("option");
-  option.value = nome;
-  datalistAtendentes.appendChild(option);
-});
+    <div class="form-group">
+      <label for="lead">Lead</label>
+      <input type="text" list="leads" id="lead">
+      <datalist id="leads"></datalist>
+    </div>
 
-const datalistReceptador = document.getElementById("receptador");
-receptadores.forEach(nome => {
-  const option = document.createElement("option");
-  option.value = nome;
-  datalistReceptador.appendChild(option);
-});
+    <div class="form-group">
+      <label for="solicitado-por">Solicitado por:</label>
+      <input type="text" list="solicitante" id="solicitado-por">
+      <datalist id="solicitante"></datalist>
+    </div>
 
-const datalistLeads = document.getElementById("leads");
-leads.forEach(nome => {
-  const option = document.createElement("option");
-  option.value = nome;
-  datalistLeads.appendChild(option);
-});
+    <div class="form-group">
+      <label for="ane">ANE</label>
+      <input type="tel" id="ane">
+    </div>
 
-const datalistDescricoes = document.getElementById("lista-descricoes");
-materiaisLista.forEach(mat => {
-  const option = document.createElement("option");
-  option.value = mat.descricao;
-  datalistDescricoes.appendChild(option);
-});
+    <div class="form-group os-buttons">
+      <label>Tipo de Ordem de Serviço</label>
+      <div class="button-group">
+        <button type="button" onclick="mostrarCampoOS('INC')">INC</button>
+        <button type="button" onclick="mostrarCampoOS('DT')">DT</button>
+        <button type="button" onclick="mostrarCampoOS('BA')">BA</button>
+      </div>
+    </div>
 
-function adicionarLinhaTabela() {
-  const tabela = document.getElementById("tabela-materiais");
-  for (let i = 0; i < 22; i++) {
-    const linha = document.createElement("tr");
+    <div id="os-container" class="form-group"></div>
+
+    <div class="tabela-container">
+      <table>
+        <thead>
+          <tr>
+            <th>CÓDIGO</th>
+            <th>DESCRIÇÃO</th>
+            <th>UN</th>
+            <th>QTD.</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-materiais"></tbody>
+      </table>
+    </div>
+
+    <datalist id="lista-descricoes"></datalist>
+
+    <button id="gerar-pdf" class="gerar-btn">Gerar PDF</button>
+
     
-    const cod = document.createElement("td");
-    const desc = document.createElement("td");
-    const un = document.createElement("td");
-    const qtd = document.createElement("td");
+  </div>
 
-    const inputCod = document.createElement("input");
-    inputCod.readOnly = true;
-
-    const inputDesc = document.createElement("input");
-    inputDesc.setAttribute("list", "lista-descricoes");
-    inputDesc.addEventListener("change", function () {
-      const material = materiaisLista.find(mat => mat.descricao === inputDesc.value);
-      if (material) {
-        inputCod.value = material.codigo;
-        inputUn.value = material.un;
-      }
-    });
-
-    const inputUn = document.createElement("input");
-    inputUn.readOnly = true;
-
-    const inputQtd = document.createElement("input");
-    inputQtd.type = "text";
-
-    cod.appendChild(inputCod);
-    desc.appendChild(inputDesc);
-    un.appendChild(inputUn);
-    qtd.appendChild(inputQtd);
-
-    linha.appendChild(cod);
-    linha.appendChild(desc);
-    linha.appendChild(un);
-    linha.appendChild(qtd);
-
-    tabela.appendChild(linha);
-  }
-}
-
-adicionarLinhaTabela();
-
-function mostrarCampoOS(tipo) {
-  const container = document.getElementById("os-container");
-  container.innerHTML = "";
-
-  const label = document.createElement("label");
-  label.textContent = "Ordem de Serviço";
-
-  const input = document.createElement("input");
-  input.id = "campo-os";
-  input.maxLength = 10;
-
-  if (tipo === "INC") {
-    input.type = "number";
-    input.placeholder = "Somente números";
-    input.maxLength = 8;
-  } else if (tipo === "DT" || tipo === "BA") {
-    input.value = tipo;
-    input.addEventListener("input", function () {
-      if (!input.value.startsWith(tipo)) {
-        input.value = tipo;
-      }
-    });
-  }
-
-  container.appendChild(label);
-  container.appendChild(input);
-}
+  <!-- Bibliotecas jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+  <script src="atendimento-materiais.js"></script>
+  <script src="atendimento-gerar-pdf.js"></script>
+</body>
+</html>
