@@ -119,7 +119,7 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
     : `${tipo} ${ane}.pdf`;
   doc.save(nomeArquivo);
 
-    // Enviar para o backend Flask
+  // Enviar para o backend Flask
   const payload = {
     base,
     data: data.replaceAll(" / ", "/"), // Envia como 09/06/2025
