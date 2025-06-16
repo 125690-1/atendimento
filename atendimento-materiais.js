@@ -660,7 +660,7 @@ atendentesMRO.forEach(nome => {
   datalistAtendentes.appendChild(option);
 });
 
-const datalistReceptador = document.getElementById("solicitante");
+const datalistReceptador = document.getElementById("receptador");
 receptadores.forEach(nome => {
   const option = document.createElement("option");
   option.value = nome;
@@ -674,11 +674,54 @@ leads.forEach(nome => {
   datalistLeads.appendChild(option);
 });
 
+// Preenche datalist de CÓDIGOS
+const datalistCodigos = document.getElementById("lista-codigos");
+materiaisLista.forEach(mat => {
+  const option = document.createElement("option");
+  option.value = mat.codigo;
+  datalistCodigos.appendChild(option);
+});
+
+// Preenche datalist de DESCRIÇÕES
 const datalistDescricoes = document.getElementById("lista-descricoes");
 materiaisLista.forEach(mat => {
   const option = document.createElement("option");
   option.value = mat.descricao;
   datalistDescricoes.appendChild(option);
+});
+
+// Detecta alterações e preenche automaticamente os campos
+document.addEventListener("input", (e) => {
+  const row = e.target.closest("tr");
+  if (!row) return;
+
+  const inputCodigo = row.querySelector(".codigo");
+  const inputDescricao = row.querySelector(".descricao");
+  const inputUN = row.querySelector(".un");
+
+  // Se código for alterado
+  if (e.target.classList.contains("codigo")) {
+    const encontrado = materiaisLista.find(mat => mat.codigo === inputCodigo.value);
+    if (encontrado) {
+      inputDescricao.value = encontrado.descricao;
+      inputUN.value = encontrado.un;
+    } else {
+      inputDescricao.value = "";
+      inputUN.value = "";
+    }
+  }
+
+  // Se descrição for alterada
+  if (e.target.classList.contains("descricao")) {
+    const encontrado = materiaisLista.find(mat => mat.descricao === inputDescricao.value);
+    if (encontrado) {
+      inputCodigo.value = encontrado.codigo;
+      inputUN.value = encontrado.un;
+    } else {
+      inputCodigo.value = "";
+      inputUN.value = "";
+    }
+  }
 });
 
 function adicionarLinhaTabela() {
