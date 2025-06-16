@@ -11,9 +11,9 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
       data = `${partes[2]} / ${partes[1]} / ${partes[0]}`;
     }
   }
-  const atendente = document.getElementById("atendido-por").value.toUpperCase();
+  const atendeu = document.getElementById("atendido-por").value.toUpperCase();
   const lead = document.getElementById("lead").value.toUpperCase();
-  const solicitante = document.getElementById("recebido-por").value.toUpperCase();
+  const solicitou = document.getElementById("solicitado-por").value.toUpperCase();
   const ane = document.getElementById("ane").value.toUpperCase();
   const osInput = document.getElementById("campo-os");
   const ordemServico = osInput ? osInput.value.toUpperCase() : "";
@@ -23,7 +23,7 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
   doc.line(15, 18, 195, 18);
   doc.setFontSize(20);
   doc.setFont("helvetica", "bold");
-  doc.text("FORMULÁRIO DE ATENDIMENTO", 105, 26, null, null, "center");
+  doc.text("FORMULÁRIO DE DEVOLUÇÃO", 105, 26, null, null, "center");
   doc.line(15, 30, 195, 30);
 
   // Dados do formulário
@@ -42,7 +42,7 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
   doc.setFont("helvetica", "bold");
   doc.text("ATENDIDO POR:", 14, 47);
   doc.setFont("helvetica", "normal");
-  doc.text(atendente, 52, 47);
+  doc.text(atendeu, 52, 47);
 
   doc.setFont("helvetica", "bold");
   doc.text("LEAD:", 150, 47);
@@ -52,7 +52,7 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
   doc.setFont("helvetica", "bold");
   doc.text("SOLICITADO POR:", 14, 54);
   doc.setFont("helvetica", "normal");
-  doc.text(solicitante, 56, 54);
+  doc.text(solicitou, 56, 54);
 
   doc.setFont("helvetica", "bold");
   doc.text("ANE:", 150, 54);
@@ -109,37 +109,42 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
   const pageHeight = doc.internal.pageSize.height;
   const rodapeY = pageHeight - 18;
   doc.line(20, rodapeY, 98, rodapeY);
-  doc.text("ATENDENTE", 44, rodapeY + 5);
+  doc.text("MRO", 52, rodapeY + 5);
   doc.line(115, rodapeY, 190, rodapeY);
-  doc.text("SOLICITANTE", 139, rodapeY + 5);
+  doc.text("OPERAÇÃO", 139, rodapeY + 5);
 
-  doc.save("formulario-atendimento.pdf");
+  const tipo = "ATENDIMENTO";
+  const nomeArquivo = ordemServico
+    ? `${tipo} ${ordemServico}.pdf`
+    : `${tipo} ${ane}.pdf`;
+  doc.save(nomeArquivo);
 
-    // Enviar para o backend Flask
+  // Enviar os dados para o backend
   const payload = {
     base,
-    data: data.replaceAll(" / ", "/"), // Envia como 09/06/2025
-    atendido_por: atendente,
+    data: data.replaceAll(" / ", "/"),
+    atendido_por: atendeu,
     lead,
-    solicitado_por: solicitante,
+    solicitado_por: solicitou,
     ane,
+    tipo: "DEVOLUÇÃO",
     ordem_servico: ordemServico,
-    materiais: materiais.map(linha => ({
-      codigo: linha[0],
-      descricao: linha[1],
-      un: linha[2],
-      qtd: linha[3]
+    materiais: materiais.map(row => ({
+      codigo: row[0],
+      descricao: row[1],
+      un: row[2],
+      qtd: row[3]
     }))
   };
 
-  fetch("https://backend-atendimento-materiais-818351890829.southamerica-east1.run.app/enviar", {
+  fetch("https://backend-controle-materiais-818351890829.southamerica-east1.run.app/enviar", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(payload)
   })
-    .then(response => response.json())
+  .then(response => response.json())
   .then(resultado => {
     if (resultado.status === "sucesso") {
       alert("✅ Dados enviados com sucesso para o Controle Materiais!");
