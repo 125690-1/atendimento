@@ -142,3 +142,23 @@ table thead th:nth-child(4),
 table tbody td:nth-child(4) {
   width: 10%; /* QTD. */
 }
+
+#adicionar-linha {
+  background-color: #1976d2;         /* Azul moderno */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+}
+
+#adicionar-linha:hover {
+  background-color: #125ea3;
+  transform: translateY(-1px);
+}
