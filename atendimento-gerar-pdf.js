@@ -123,11 +123,11 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
   const payload = {
     base,
     data: data.replaceAll(" / ", "/"),
-    atendido_por: atendeu,
+    recebido_por: atendeu,
     lead,
-    solicitado_por: solicitou,
+    entregue_por: solicitou,
     ane,
-    tipo: "DEVOLUÇÃO",
+    tipo: "ATENDIMENTO",
     ordem_servico: ordemServico,
     materiais: materiais.map(row => ({
       codigo: row[0],
