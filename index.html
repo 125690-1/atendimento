@@ -37,9 +37,9 @@
     </div>
 
     <div class="form-group">
-      <label for="solicitado-por">Solicitado por:</label>
-      <input type="text" list="solicitante" id="solicitado-por">
-      <datalist id="solicitante"></datalist>
+      <label for="recebido-por">Solicitado por</label>
+      <input type="text" list="receptador" id="recebido-por">
+      <datalist id="receptador"></datalist>
     </div>
 
     <div class="form-group">
@@ -68,10 +68,25 @@
             <th>QTD.</th>
           </tr>
         </thead>
-        <tbody id="tabela-materiais"></tbody>
+        <tbody id="tabela-materiais">
+          <tr>
+            <td>
+              <input type="text" class="codigo" list="lista-codigos" />
+            </td>
+            <td>
+              <input type="text" class="descricao" list="lista-descricoes" />
+            </td>
+            <td>
+              <input type="text" class="un" readonly />
+            </td>
+            <td>
+              <input type="number" class="quantidade" min="1" />
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
-
+    <datalist id="lista-codigos"></datalist>
     <datalist id="lista-descricoes"></datalist>
 
     <button id="gerar-pdf" class="gerar-btn">Gerar PDF</button>
@@ -83,6 +98,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
   <script src="atendimento-materiais.js"></script>
-  <script src="atendimento-gerar-pdf.js"></script>
+  <script src="gerar-pdf.js"></script>
 </body>
 </html>
