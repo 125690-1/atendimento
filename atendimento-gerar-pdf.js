@@ -123,9 +123,9 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
   const payload = {
     base,
     data: data.replaceAll(" / ", "/"),
-    recebido_por: atendeu,
+    atendido_por: atendeu,
     lead,
-    entregue_por: solicitou,
+    solicitado_por: solicitou,
     ane,
     tipo: "ATENDIMENTO",
     ordem_servico: ordemServico,
