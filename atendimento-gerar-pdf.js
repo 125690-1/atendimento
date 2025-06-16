@@ -13,7 +13,7 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
   }
   const atendente = document.getElementById("atendido-por").value.toUpperCase();
   const lead = document.getElementById("lead").value.toUpperCase();
-  const solicitante = document.getElementById("solicitado-por").value.toUpperCase();
+  const solicitante = document.getElementById("recebido-por").value.toUpperCase();
   const ane = document.getElementById("ane").value.toUpperCase();
   const osInput = document.getElementById("campo-os");
   const ordemServico = osInput ? osInput.value.toUpperCase() : "";
@@ -113,13 +113,9 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
   doc.line(115, rodapeY, 190, rodapeY);
   doc.text("SOLICITANTE", 139, rodapeY + 5);
 
-  const tipo = "ATENDIMENTO";
-  const nomeArquivo = ordemServico
-    ? `${tipo} ${ordemServico}.pdf`
-    : `${tipo} ${ane}.pdf`;
-  doc.save(nomeArquivo);
+  doc.save("formulario-atendimento.pdf");
 
-  // Enviar para o backend Flask
+    // Enviar para o backend Flask
   const payload = {
     base,
     data: data.replaceAll(" / ", "/"), // Envia como 09/06/2025
@@ -127,7 +123,6 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
     lead,
     solicitado_por: solicitante,
     ane,
-    tipo: "ATENDIMENTO",
     ordem_servico: ordemServico,
     materiais: materiais.map(linha => ({
       codigo: linha[0],
@@ -137,7 +132,7 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
     }))
   };
 
-  fetch("https://backend-controle-materiais-818351890829.southamerica-east1.run.app/enviar", {
+  fetch("https://backend-atendimento-materiais-818351890829.southamerica-east1.run.app/enviar", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
