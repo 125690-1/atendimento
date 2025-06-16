@@ -7,7 +7,7 @@ const atendentesMRO = [
   "CARLOS EDUARDO"
 ];
 
-const receptadores = [
+const solicitantes = [
   "JOÃO PEREIRA",
   "LUCAS MENDES",
   "PAULO HENRIQUE",
@@ -660,11 +660,11 @@ atendentesMRO.forEach(nome => {
   datalistAtendentes.appendChild(option);
 });
 
-const datalistReceptador = document.getElementById("receptador");
-receptadores.forEach(nome => {
+const datalistsolicitante = document.getElementById("solicitante");
+solicitantes.forEach(nome => {
   const option = document.createElement("option");
   option.value = nome;
-  datalistReceptador.appendChild(option);
+  datalistsolicitante.appendChild(option);
 });
 
 const datalistLeads = document.getElementById("leads");
@@ -674,101 +674,86 @@ leads.forEach(nome => {
   datalistLeads.appendChild(option);
 });
 
-// Preenche datalist de CÓDIGOS
+// Validação da Tabela de materiais ----------------------------------------------------------
+
+// Referências para elementos HTML
+const tabela = document.getElementById("tabela-materiais");
 const datalistCodigos = document.getElementById("lista-codigos");
-materiaisLista.forEach(mat => {
-  const option = document.createElement("option");
-  option.value = mat.codigo;
-  datalistCodigos.appendChild(option);
-});
-
-// Preenche datalist de DESCRIÇÕES
 const datalistDescricoes = document.getElementById("lista-descricoes");
+
+// Popula os datalists com os códigos e descrições dos materiais
 materiaisLista.forEach(mat => {
-  const option = document.createElement("option");
-  option.value = mat.descricao;
-  datalistDescricoes.appendChild(option);
+  datalistCodigos.innerHTML += `<option value="${mat.codigo}">`;
+  datalistDescricoes.innerHTML += `<option value="${mat.descricao}">`;
 });
 
-// Detecta alterações e preenche automaticamente os campos
-document.addEventListener("input", (e) => {
-  const row = e.target.closest("tr");
-  if (!row) return;
+// Adiciona uma nova linha à tabela quando o botão é clicado
+document.getElementById("adicionar-linha").addEventListener("click", () => {
+  const linha = tabela.insertRow(); // Cria uma nova linha na tabela
 
-  const inputCodigo = row.querySelector(".codigo");
-  const inputDescricao = row.querySelector(".descricao");
-  const inputUN = row.querySelector(".un");
+  // Cria 4 células (colunas) na linha
+  const tdCodigo = linha.insertCell();
+  const tdDescricao = linha.insertCell();
+  const tdUn = linha.insertCell();
+  const tdQtd = linha.insertCell();
 
-  // Se código for alterado
+  // Insere campos de input com datalist nas células
+  tdCodigo.innerHTML = `<input list="lista-codigos" class="codigo">`;
+  tdDescricao.innerHTML = `<input list="lista-descricoes" class="descricao">`;
+  tdUn.innerHTML = `<input type="text" class="un" readonly>`;
+  tdQtd.innerHTML = `<input type="number" class="qtd" min="1">`;
+});
+
+// Acompanha a digitação nas células da tabela para auto preencher os dados
+tabela.addEventListener("input", e => {
+  const linha = e.target.closest("tr"); // Pega a linha onde o usuário digitou
+  if (!linha) return;
+
+  const codigoInput = linha.querySelector(".codigo");
+  const descInput = linha.querySelector(".descricao");
+  const unInput = linha.querySelector(".un");
+
+  let material = null;
+
+  // Se digitou no campo código, preenche a descrição e unidade
   if (e.target.classList.contains("codigo")) {
-    const encontrado = materiaisLista.find(mat => mat.codigo === inputCodigo.value);
-    if (encontrado) {
-      inputDescricao.value = encontrado.descricao;
-      inputUN.value = encontrado.un;
-    } else {
-      inputDescricao.value = "";
-      inputUN.value = "";
+    material = materiaisLista.find(m => m.codigo === codigoInput.value);
+    if (material) {
+      descInput.value = material.descricao;
+      unInput.value = material.un;
     }
   }
 
-  // Se descrição for alterada
+  // Se digitou na descrição, preenche o código e unidade
   if (e.target.classList.contains("descricao")) {
-    const encontrado = materiaisLista.find(mat => mat.descricao === inputDescricao.value);
-    if (encontrado) {
-      inputCodigo.value = encontrado.codigo;
-      inputUN.value = encontrado.un;
-    } else {
-      inputCodigo.value = "";
-      inputUN.value = "";
+    material = materiaisLista.find(m => m.descricao === descInput.value);
+    if (material) {
+      codigoInput.value = material.codigo;
+      unInput.value = material.un;
     }
   }
+
+  // Verifica se há códigos duplicados e marca o campo com erro
+  const codigos = Array.from(document.querySelectorAll(".codigo")).map(input => input.value);
+  const duplicados = codigos.filter((val, i, arr) => arr.indexOf(val) !== i && val);
+  document.querySelectorAll(".codigo").forEach(input => {
+    input.setCustomValidity(duplicados.includes(input.value) ? "Duplicado!" : "");
+  }); 
 });
 
-function adicionarLinhaTabela() {
-  const tabela = document.getElementById("tabela-materiais");
-  for (let i = 0; i < 22; i++) {
-    const linha = document.createElement("tr");
-    
-    const cod = document.createElement("td");
-    const desc = document.createElement("td");
-    const un = document.createElement("td");
-    const qtd = document.createElement("td");
+// Adiciona 5 linhas automaticamente ao carregar a página
+  window.addEventListener("DOMContentLoaded", () => {
+    for (let i = 0; i < 5; i++) {
+      document.getElementById("adicionar-linha").click();
+    }
+  });
+// ----------------------------------------------------------------------------------------------
 
-    const inputCod = document.createElement("input");
-    inputCod.readOnly = true;
 
-    const inputDesc = document.createElement("input");
-    inputDesc.setAttribute("list", "lista-descricoes");
-    inputDesc.addEventListener("change", function () {
-      const material = materiaisLista.find(mat => mat.descricao === inputDesc.value);
-      if (material) {
-        inputCod.value = material.codigo;
-        inputUn.value = material.un;
-      }
-    });
 
-    const inputUn = document.createElement("input");
-    inputUn.readOnly = true;
 
-    const inputQtd = document.createElement("input");
-    inputQtd.type = "text";
 
-    cod.appendChild(inputCod);
-    desc.appendChild(inputDesc);
-    un.appendChild(inputUn);
-    qtd.appendChild(inputQtd);
-
-    linha.appendChild(cod);
-    linha.appendChild(desc);
-    linha.appendChild(un);
-    linha.appendChild(qtd);
-
-    tabela.appendChild(linha);
-  }
-}
-
-adicionarLinhaTabela();
-
+// Validação dos botões INC DT BA----------------------------------------------------------------
 function mostrarCampoOS(tipo) {
   const container = document.getElementById("os-container");
   container.innerHTML = "";
@@ -796,3 +781,4 @@ function mostrarCampoOS(tipo) {
   container.appendChild(label);
   container.appendChild(input);
 }
+// ----------------------------------------------------------------------------------------------
