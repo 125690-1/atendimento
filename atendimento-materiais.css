@@ -125,7 +125,7 @@ tbody input {
 /* Largura personalizada das colunas da tabela no formulário */
 table thead th:nth-child(1),
 table tbody td:nth-child(1) {
-  width: 40%; /* CÓDIGO */
+  width: 16%; /* CÓDIGO */
 }
 
 table thead th:nth-child(2),
@@ -161,4 +161,23 @@ table tbody td:nth-child(4) {
 #adicionar-linha:hover {
   background-color: #125ea3;
   transform: translateY(-1px);
+}
+
+/* 🔧 Ajustes para responsividade da tabela */
+.tabela-materiais {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* 🧱 Coluna CÓDIGO com largura mínima */
+.tabela-materiais thead th:nth-child(1),
+.tabela-materiais tbody td:nth-child(1) {
+  min-width: 120px;
+}
+
+/* 📱 Contêiner com rolagem horizontal no celular */
+.responsivo {
+  overflow-x: auto;
+  width: 100%;
 }
