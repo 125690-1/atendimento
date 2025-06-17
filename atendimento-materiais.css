@@ -125,7 +125,7 @@ tbody input {
 /* Largura personalizada das colunas da tabela no formulário */
 table thead th:nth-child(1),
 table tbody td:nth-child(1) {
-  width: 16%; /* CÓDIGO */
+  width: 40%; /* CÓDIGO */
 }
 
 table thead th:nth-child(2),
