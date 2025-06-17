@@ -125,22 +125,22 @@ tbody input {
 /* Largura personalizada das colunas da tabela no formulário */
 table thead th:nth-child(1),
 table tbody td:nth-child(1) {
-  width: 7%; /* CÓDIGO */
+  width: 16%; /* CÓDIGO */
 }
 
 table thead th:nth-child(2),
 table tbody td:nth-child(2) {
-  width: 50%; /* DESCRIÇÃO */
+  width: 45%; /* DESCRIÇÃO */
 }
 
 table thead th:nth-child(3),
 table tbody td:nth-child(3) {
-  width: 10%; /* UN */
+  width: 9%; /* UN */
 }
 
 table thead th:nth-child(4),
 table tbody td:nth-child(4) {
-  width: 10%; /* QTD. */
+  width: 15%; /* QTD. */
 }
 
 #adicionar-linha {
