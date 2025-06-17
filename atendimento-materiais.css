@@ -153,7 +153,7 @@ tbody input {
 .tabela-materiais thead th:nth-child(1),
 .tabela-materiais tbody td:nth-child(1) {
   width: 180px;
-  min-width: 120px;
+  min-width: 180px;
 }
 
 /* 📱 Contêiner com rolagem horizontal no celular */
