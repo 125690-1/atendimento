@@ -1,4 +1,52 @@
-document.getElementById("gerar-pdf").addEventListener("click", function () {
+
+async function enviarParaPlanilha() {
+  const base = document.getElementById("base").value.toUpperCase();
+  const data = document.getElementById("data").value;
+  const mro = document.getElementById("atendido-por")?.value?.toUpperCase() || document.getElementById("recebido-por")?.value?.toUpperCase();
+  const operacao = document.getElementById("solicitado-por")?.value?.toUpperCase() || document.getElementById("entregue-por")?.value?.toUpperCase();
+  const lead = document.getElementById("lead").value.toUpperCase();
+  const ane = document.getElementById("ane").value.toUpperCase();
+  const ordemServico = document.getElementById("campo-os").value.toUpperCase();
+
+  const materiais = Array.from(document.querySelectorAll("#tabela-materiais tr")).map(tr => {
+    const inputs = tr.querySelectorAll("input");
+    return {
+      codigo: (inputs[0]?.value || "").toUpperCase(),
+      descricao: (inputs[1]?.value || "").toUpperCase(),
+      un: (inputs[2]?.value || "").toUpperCase(),
+      qtd: (inputs[3]?.value || "")
+    };
+  }).filter(mat => mat.codigo && mat.descricao);
+
+  const dados = {
+    tipo: "ATENDIMENTO",
+    base,
+    data,
+    mro,
+    operacao,
+    lead,
+    ane,
+    ordem_de_servico: ordemServico,
+    materiais
+  };
+
+  try {
+    const response = await fetch("https://backend-controle-materiais-818351890829.southamerica-east1.run.app/enviar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dados)
+    });
+    const result = await response.json();
+    console.log("Resultado:", result);
+    alert(result.mensagem || result.erro || "Erro desconhecido.");
+  } catch (err) {
+    alert("Erro ao enviar para a planilha: " + err);
+  }
+}
+
+
+document.getElementById("gerar-pdf").addEventListener("click", async function () {
+  await enviarParaPlanilha();
   const doc = new window.jspdf.jsPDF();
 
   // Coletar dados
@@ -118,42 +166,4 @@ document.getElementById("gerar-pdf").addEventListener("click", function () {
     ? `${tipo} ${ordemServico}.pdf`
     : `${tipo} ${ane}.pdf`;
   doc.save(nomeArquivo);
-
-  // Enviar os dados para o backend
-  const payload = {
-    base,
-    data: data.replaceAll(" / ", "/"),
-    mro: atendeu,
-    lead,
-    operacao: solicitou,
-    ane,
-    tipo: "ATENDIMENTO",
-    ordem_servico: ordemServico,
-    materiais: materiais.map(row => ({
-      codigo: row[0],
-      descricao: row[1],
-      un: row[2],
-      qtd: row[3]
-    }))
-  };
-
-  fetch("https://backend-controle-materiais-818351890829.southamerica-east1.run.app/enviar", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
-  })
-  .then(response => response.json())
-  .then(resultado => {
-    if (resultado.status === "sucesso") {
-      alert("✅ Dados enviados com sucesso para o Controle Materiais!");
-    } else {
-      alert("❌ Erro ao enviar os dados: " + resultado.mensagem);
-    }
-  })
-  .catch(error => {
-    console.error("Erro ao enviar:", error);
-    alert("❌ Erro de conexão com o servidor.");
-  });
 });
