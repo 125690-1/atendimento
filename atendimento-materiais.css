@@ -122,27 +122,6 @@ tbody input {
   background-color: #1e7e34;
 }
 
-/* Largura personalizada das colunas da tabela no formulário versão Desktop*/
-table thead th:nth-child(1),
-table tbody td:nth-child(1) {
-  width: 16%; /* CÓDIGO */
-}
-
-table thead th:nth-child(2),
-table tbody td:nth-child(2) {
-  width: 45%; /* DESCRIÇÃO */
-}
-
-table thead th:nth-child(3),
-table tbody td:nth-child(3) {
-  width: 9%; /* UN */
-}
-
-table thead th:nth-child(4),
-table tbody td:nth-child(4) {
-  width: 15%; /* QTD. */
-}
-
 #adicionar-linha {
   background-color: #1976d2;         /* Azul moderno */
   color: white;
