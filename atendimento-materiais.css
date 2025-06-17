@@ -173,7 +173,7 @@ table tbody td:nth-child(4) {
 /* 🧱 Coluna CÓDIGO com largura mínima */
 .tabela-materiais thead th:nth-child(1),
 .tabela-materiais tbody td:nth-child(1) {
-  min-width: 20px;
+  min-width: 40px;
 }
 
 /* 📱 Contêiner com rolagem horizontal no celular */
