@@ -44,6 +44,32 @@ async function enviarParaPlanilha() {
   }
 }
 
+// === VALIDAÇÃO DE CAMPOS OBRIGATÓRIOS ===
+let tipoOrdemSelecionado = "";
+
+function mostrarCampoOS(tipo) {
+  tipoOrdemSelecionado = tipo;
+  const container = document.getElementById("os-container");
+  let input = `<label for="campo-os">Ordem de Serviço (${tipo})</label>`;
+
+  if (tipo === "INC") {
+    input += `<input type="text" id="campo-os" maxlength="8" pattern="\d{8}" inputmode="numeric" placeholder="Somente números">`;
+  } else {
+    input += `<input type="text" id="campo-os" value="${tipo}" maxlength="10" pattern="${tipo}\d{8}" inputmode="numeric">`;
+  }
+
+  container.innerHTML = input;
+
+  const osInput = document.getElementById("campo-os");
+  osInput.addEventListener("input", () => {
+    if (tipo === "INC") {
+      osInput.value = osInput.value.replace(/\D/g, "").slice(0, 8);
+    } else {
+      osInput.value = tipo + osInput.value.replace(/\D/g, "").slice(0, 8);
+    }
+  });
+}
+
 function validarCamposObrigatorios() {
   const base = document.getElementById("base").value.trim();
   const data = document.getElementById("data").value.trim();
@@ -70,7 +96,7 @@ function validarCamposObrigatorios() {
       return alert("⚠️ Ordem de serviço (INC) deve conter exatamente 8 números.");
     }
     if ((tipoOrdemSelecionado === "DT" || tipoOrdemSelecionado === "BA") && !new RegExp(`^${tipoOrdemSelecionado}\d{8}$`).test(ordemServico)) {
-      return alert(`⚠️ Ordem de serviço (${tipoOrdemSelecionado}) deve ter o formato ${tipoOrdemSelecionado}xxxxxxxx.`);
+      return alert(`⚠️ Ordem de serviço (${tipoOrdemSelecionado}) deve ter o formato ${tipoOrdemSelecionado} + 8 números.(${tipoOrdemSelecionado}xxxxxxxx)`);
     }
   }
 
