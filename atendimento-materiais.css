@@ -142,21 +142,16 @@ tbody input {
   transform: translateY(-1px);
 }
 
-/* 🔧 Ajustes para responsividade da tabela versão mobile*/
-.tabela-materiais {
-  table-layout: fixed;
-  width: 100%;
-  border-collapse: collapse;
-}
 
-/* 🧱 Coluna CÓDIGO com largura mínima */
+/* Força largura visível da coluna CÓDIGO mesmo em celulares */
 .tabela-materiais thead th:nth-child(1),
 .tabela-materiais tbody td:nth-child(1) {
-  min-width: 180px;
+  width: 140px;
+  min-width: 140px;
 }
 
-/* 📱 Contêiner com rolagem horizontal no celular */
-.responsivo {
-  overflow-x: auto;
+/* Faz o input ocupar toda a célula */
+.tabela-materiais tbody td:nth-child(1) input {
   width: 100%;
+  box-sizing: border-box;
 }
