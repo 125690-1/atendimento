@@ -39,7 +39,7 @@ async function enviarParaPlanilha() {
       body: JSON.stringify(dados),
     }); 
 
-    const result = await resposta.json(); // <- Aqui é onde a correção foi feita
+    const result = await resposta.json();
 
     if (resposta.ok) {
       alert(result.mensagem || "✅ PDF gerado e dados enviados com sucesso para o Controle de Materiais!");
@@ -111,12 +111,11 @@ function validarCamposObrigatorios() {
   }
 
   if (ordemServico) {
-    if (/^\d{8}$/.test(ordemServico)) {
-      // OK, é um código tipo INC
-    } else if (/^(DT|BA)\d{8}$/.test(ordemServico)) {
-      // OK, é tipo DT ou BA com 8 dígitos
-    } else {
-      return alert("⚠️ Ordem de serviço inválida. O prefixo DT ou BA já é inserido automaticamente. Você deve digitar apenas os 8 números obrigatórios.");
+    if (tipoOrdemSelecionado === "INC" && !/^\d{8}$/.test(ordemServico)) {
+      return alert("⚠️ Ordem de serviço (INC) deve conter exatamente 8 números.");
+    }
+    if ((tipoOrdemSelecionado === "DT" || tipoOrdemSelecionado === "BA") && !new RegExp(`^${tipoOrdemSelecionado}\\d{8}$`).test(ordemServico)) {
+      return alert(`⚠️ Ordem de serviço (${tipoOrdemSelecionado}) deve ter o formato ${tipoOrdemSelecionado} + 8 números.(${tipoOrdemSelecionado}xxxxxxxx)`);
     }
   }
 
