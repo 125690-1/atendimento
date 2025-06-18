@@ -146,19 +146,19 @@ tbody input {
 .tabela-materiais .coluna-1,
 .tabela-materiais td.coluna-1 {
   width: 20%;       /* CÓDIGO */
-  min-width: 70px;
+  min-width: 75px;
 }
 
 .tabela-materiais .coluna-2,
 .tabela-materiais td.coluna-2 {
   width: 50%;       /* DESCRIÇÃO */
-  min-width: 130px;
+  min-width: 135px;
 }
 
 .tabela-materiais .coluna-3,
 .tabela-materiais td.coluna-3 {
   width: 9%;       /* UN */
-  min-width: 50px;
+  min-width: 35px;
 }
 
 .tabela-materiais .coluna-4,
