@@ -145,19 +145,19 @@ tbody input {
 /* ✅ PERSONALIZE A LARGURA DAS COLUNAS DA TABELA */
 .tabela-materiais .coluna-1,
 .tabela-materiais td.coluna-1 {
-  width: 25%;       /* CÓDIGO */
+  width: 22%;       /* CÓDIGO */
   min-width: 80px;
 }
 
 .tabela-materiais .coluna-2,
 .tabela-materiais td.coluna-2 {
-  width: 45%;       /* DESCRIÇÃO */
+  width: 50%;       /* DESCRIÇÃO */
   min-width: 120px;
 }
 
 .tabela-materiais .coluna-3,
 .tabela-materiais td.coluna-3 {
-  width: 15%;       /* UN */
+  width: 11%;       /* UN */
   min-width: 50px;
 }
 
