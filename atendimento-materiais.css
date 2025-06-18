@@ -146,8 +146,8 @@ tbody input {
 /* Força largura visível da coluna CÓDIGO mesmo em celulares */
 .tabela-materiais thead th:nth-child(1),
 .tabela-materiais tbody td:nth-child(1) {
-  width: 100px;
-  min-width: 100px;
+  width: 70px;
+  min-width: 70px;
 }
 
 /* Faz o input ocupar toda a célula */
