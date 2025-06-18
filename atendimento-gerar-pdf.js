@@ -1,4 +1,3 @@
-
 async function enviarParaPlanilha() {
   const base = document.getElementById("base").value.toUpperCase();
   const data = document.getElementById("data").value;
@@ -32,16 +31,22 @@ async function enviarParaPlanilha() {
   };
 
   try {
-    const response = await fetch("https://backend-controle-materiais-818351890829.southamerica-east1.run.app/enviar", {
+    const resposta = await fetch("https://backend-controle-materiais-818351890829.southamerica-east1.run.app/enviar", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dados)
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
     });
-    const result = await response.json();
-    console.log("Resultado:", result);
-    alert(result.mensagem || result.erro || "Erro desconhecido.");
-  } catch (err) {
-    alert("Erro ao enviar para a planilha: " + err);
+
+    if (resposta.ok) {
+      alert("✅ PDF gerado e dados enviados com sucesso para o Controle de Materiais!");
+    } else {
+      alert("❌ Erro ao enviar dados para a planilha.");
+    }
+  } catch (erro) {
+    console.error(erro);
+    alert("❌ Erro inesperado ao enviar dados.");
   }
 }
 
