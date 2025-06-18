@@ -145,7 +145,7 @@ tbody input {
 /* ✅ PERSONALIZE A LARGURA DAS COLUNAS DA TABELA */
 .tabela-materiais .coluna-1,
 .tabela-materiais td.coluna-1 {
-  width: 22%;       /* CÓDIGO */
+  width: 20%;       /* CÓDIGO */
   min-width: 80px;
 }
 
@@ -157,7 +157,7 @@ tbody input {
 
 .tabela-materiais .coluna-3,
 .tabela-materiais td.coluna-3 {
-  width: 11%;       /* UN */
+  width: 9%;       /* UN */
   min-width: 50px;
 }
 
