@@ -142,16 +142,35 @@ tbody input {
   transform: translateY(-1px);
 }
 
-
-/* Força largura visível da coluna CÓDIGO mesmo em celulares */
-.tabela-materiais thead th:nth-child(1),
-.tabela-materiais tbody td:nth-child(1) {
-  width: 70px;
-  min-width: 70px;
+/* 🔧 Ajustes para responsividade da tabela versão mobile*/
+.tabela-materiais {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-/* Faz o input ocupar toda a célula */
-.tabela-materiais tbody td:nth-child(1) input {
+/* 🧱 Coluna CÓDIGO com largura mínima */
+.tabela-materiais thead th:nth-child(1),
+.tabela-materiais tbody td:nth-child(1) {
+  min-width: 120px;
+}
+
+/* 📱 Contêiner com rolagem horizontal no celular */
+.responsivo {
+  overflow-x: auto;
+  width: 100%;
+}
+
+
+
+/* ✅ PERSONALIZE A LARGURA DAS COLUNAS AQUI: */
+
+.tabela-materiais .coluna-1 { width: 120px; min-width: 120px; }  /* CÓDIGO */
+.tabela-materiais .coluna-2 { width: 300px; min-width: 300px; }  /* DESCRIÇÃO */
+.tabela-materiais .coluna-3 { width: 100px; min-width: 100px; }  /* UN */
+.tabela-materiais .coluna-4 { width: 80px;  min-width: 80px;  }  /* QTD */
+
+.tabela-materiais td input {
   width: 100%;
   box-sizing: border-box;
 }
