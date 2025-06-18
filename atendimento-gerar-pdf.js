@@ -115,7 +115,7 @@ function validarCamposObrigatorios() {
       return alert("⚠️ Ordem de serviço (INC) deve conter exatamente 8 números.");
     }
     if ((tipoOrdemSelecionado === "DT" || tipoOrdemSelecionado === "BA") && !new RegExp(`^${tipoOrdemSelecionado}\\d{8}$`).test(ordemServico)) {
-      return alert(`⚠️ Ordem de serviço (${tipoOrdemSelecionado}) deve ter o formato ${tipoOrdemSelecionado} + 8 números.(${tipoOrdemSelecionado}xxxxxxxx)`);
+      return alert(`⚠️ Ordem de serviço (${tipoOrdemSelecionado}) deve ter o formato ${tipoOrdemSelecionado} + 8 números.(Ex: ${tipoOrdemSelecionado}12345678)`);
     }
   }
 
