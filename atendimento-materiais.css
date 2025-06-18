@@ -167,8 +167,8 @@ tbody input {
 
 .tabela-materiais .coluna-1 { width: 120px; min-width: 120px; }  /* CÓDIGO */
 .tabela-materiais .coluna-2 { width: 300px; min-width: 300px; }  /* DESCRIÇÃO */
-.tabela-materiais .coluna-3 { width: 100px; min-width: 100px; }  /* UN */
-.tabela-materiais .coluna-4 { width: 80px;  min-width: 80px;  }  /* QTD */
+.tabela-materiais .coluna-3 { width: 60px; min-width: 60px; }  /* UN */
+.tabela-materiais .coluna-4 { width: 70px;  min-width: 70px;  }  /* QTD */
 
 .tabela-materiais td input {
   width: 100%;
