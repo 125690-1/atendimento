@@ -1,6 +1,11 @@
 async function enviarParaPlanilha() {
   const base = document.getElementById("base").value.toUpperCase();
-  const data = document.getElementById("data").value;
+  const dataInput = document.getElementById("data").value;
+  let data = dataInput;
+  if (dataInput && dataInput.includes("-")) {
+    const partes = dataInput.split("-");
+    data = `${partes[2]}/${partes[1]}/${partes[0]}`; // dd/mm/aaaa
+  }
   const mro = document.getElementById("atendido-por")?.value?.toUpperCase() || document.getElementById("recebido-por")?.value?.toUpperCase();
   const operacao = document.getElementById("solicitado-por")?.value?.toUpperCase() || document.getElementById("entregue-por")?.value?.toUpperCase();
   const lead = document.getElementById("lead").value.toUpperCase();
