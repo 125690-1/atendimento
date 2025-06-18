@@ -37,13 +37,17 @@ async function enviarParaPlanilha() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(dados),
-    });
+    }); 
+
+    const result = await resposta.json(); // <- Aqui é onde a correção foi feita
 
     if (resposta.ok) {
-      alert("✅ PDF gerado e dados enviados com sucesso para o Controle de Materiais!");
+      alert(result.mensagem || "✅ PDF gerado e dados enviados com sucesso para o Controle de Materiais!");
     } else {
-      alert("❌ Erro ao enviar dados para a planilha.");
+      alert(result.erro || "❌ Erro ao enviar dados para a planilha.");
     }
+
+    console.log("Resultado:", result);
   } catch (erro) {
     console.error(erro);
     alert("❌ Erro inesperado ao enviar dados.");
