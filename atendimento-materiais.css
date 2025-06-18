@@ -152,7 +152,6 @@ tbody input {
 /* 🧱 Coluna CÓDIGO com largura mínima */
 .tabela-materiais thead th:nth-child(1),
 .tabela-materiais tbody td:nth-child(1) {
-  width: 180px;
   min-width: 180px;
 }
 
