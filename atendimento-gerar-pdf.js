@@ -107,7 +107,7 @@ function validarCamposObrigatorios() {
     } else if (/^(DT|BA)\d{8}$/.test(ordemServico)) {
       // OK, é tipo DT ou BA com 8 dígitos
     } else {
-      return alert("⚠️ Ordem de serviço inválida. Deve conter:\n- 8 números (ex: 12345678), ou\n- DT + 8 números (ex: DT12345678), ou\n- BA + 8 números (ex: BA12345678).");
+      return alert("⚠️ Ordem de serviço inválida. O prefixo DT ou BA já é inserido automaticamente. Você deve digitar apenas os 8 números obrigatórios.");
     }
   }
 
