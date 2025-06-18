@@ -44,8 +44,41 @@ async function enviarParaPlanilha() {
   }
 }
 
+function validarCamposObrigatorios() {
+  const base = document.getElementById("base").value.trim();
+  const data = document.getElementById("data").value.trim();
+  const mro = document.getElementById("atendido-por").value.trim();
+  const lead = document.getElementById("lead").value.trim();
+  const operacao = document.getElementById("solicitado-por").value.trim();
+  const ane = document.getElementById("ane").value.trim();
+  const osInput = document.getElementById("campo-os");
+  const ordemServico = osInput ? osInput.value.trim() : "";
+
+  if (!base) return alert("⚠️ Preencha o campo BASE.");
+  if (!data) return alert("⚠️ Preencha o campo DATA.");
+  if (!mro) return alert("⚠️ Preencha o campo ATENDIDO POR.");
+  if (!lead) return alert("⚠️ Preencha o campo LEAD.");
+  if (!operacao) return alert("⚠️ Preencha o campo SOLICITADO POR.");
+  if (!ane && !ordemServico) return alert("⚠️ Preencha ao menos o campo ANE ou a ORDEM DE SERVIÇO.");
+
+  if (ane && !/^\d{7}$/.test(ane)) {
+    return alert("⚠️ O campo ANE deve conter exatamente 7 dígitos numéricos.");
+  }
+
+  if (ordemServico) {
+    if (tipoOrdemSelecionado === "INC" && !/^\d{8}$/.test(ordemServico)) {
+      return alert("⚠️ Ordem de serviço (INC) deve conter exatamente 8 números.");
+    }
+    if ((tipoOrdemSelecionado === "DT" || tipoOrdemSelecionado === "BA") && !new RegExp(`^${tipoOrdemSelecionado}\d{8}$`).test(ordemServico)) {
+      return alert(`⚠️ Ordem de serviço (${tipoOrdemSelecionado}) deve ter o formato ${tipoOrdemSelecionado}xxxxxxxx.`);
+    }
+  }
+
+  return true;
+}
 
 document.getElementById("gerar-pdf").addEventListener("click", async function () {
+  if (!validarCamposObrigatorios()) return;
   await enviarParaPlanilha();
   const doc = new window.jspdf.jsPDF();
 
