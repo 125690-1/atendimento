@@ -50,24 +50,33 @@ let tipoOrdemSelecionado = "";
 function mostrarCampoOS(tipo) {
   tipoOrdemSelecionado = tipo;
   const container = document.getElementById("os-container");
-  let input = `<label for="campo-os">Ordem de Serviço (${tipo})</label>`;
+  container.innerHTML = "";
+
+  const label = document.createElement("label");
+  label.textContent = `Ordem de Serviço (${tipo})`;
+
+  const input = document.createElement("input");
+  input.id = "campo-os";
+  input.maxLength = 10;
+  input.inputMode = "numeric";
 
   if (tipo === "INC") {
-    input += `<input type="text" id="campo-os" maxlength="8" pattern="\d{8}" inputmode="numeric" placeholder="Somente números">`;
-  } else {
-    input += `<input type="text" id="campo-os" value="${tipo}" maxlength="10" pattern="${tipo}\d{8}" inputmode="numeric">`;
+    input.type = "text";
+    input.placeholder = "Somente números";
+    input.addEventListener("input", function () {
+      input.value = input.value.replace(/\D/g, "").slice(0, 8);
+    });
+  } else if (tipo === "DT" || tipo === "BA") {
+    input.type = "text";
+    input.value = tipo;
+    input.addEventListener("input", function () {
+      let numeros = input.value.replace(/\D/g, "").slice(0, 8);
+      input.value = tipo + numeros;
+    });
   }
 
-  container.innerHTML = input;
-
-  const osInput = document.getElementById("campo-os");
-  osInput.addEventListener("input", () => {
-    if (tipo === "INC") {
-      osInput.value = osInput.value.replace(/\D/g, "").slice(0, 8);
-    } else {
-      osInput.value = tipo + osInput.value.replace(/\D/g, "").slice(0, 8);
-    }
-  });
+  container.appendChild(label);
+  container.appendChild(input);
 }
 
 function validarCamposObrigatorios() {
@@ -78,7 +87,7 @@ function validarCamposObrigatorios() {
   const operacao = document.getElementById("solicitado-por").value.trim();
   const ane = document.getElementById("ane").value.trim();
   const osInput = document.getElementById("campo-os");
-  const ordemServico = osInput ? osInput.value.trim() : "";
+  const ordemServico = document.getElementById("campo-os")?.value.trim().toUpperCase() || "";
 
   if (!base) return alert("⚠️ Preencha o campo BASE.");
   if (!data) return alert("⚠️ Preencha o campo DATA.");
@@ -95,8 +104,8 @@ function validarCamposObrigatorios() {
     if (tipoOrdemSelecionado === "INC" && !/^\d{8}$/.test(ordemServico)) {
       return alert("⚠️ Ordem de serviço (INC) deve conter exatamente 8 números.");
     }
-    if ((tipoOrdemSelecionado === "DT" || tipoOrdemSelecionado === "BA") && !new RegExp(`^${tipoOrdemSelecionado}\d{8}$`).test(ordemServico)) {
-      return alert(`⚠️ Ordem de serviço (${tipoOrdemSelecionado}) deve ter o formato ${tipoOrdemSelecionado} + 8 números.(${tipoOrdemSelecionado}xxxxxxxx)`);
+    if ((tipoOrdemSelecionado === "DT" || tipoOrdemSelecionado === "BA") && !new RegExp(`^${tipoOrdemSelecionado}\\d{8}$`).test(ordemServico)) {
+      return alert(`⚠️ Ordem de serviço (${tipoOrdemSelecionado}) deve ter o formato ${tipoOrdemSelecionado} + 8 números.\nExemplo: ${tipoOrdemSelecionado}12345678`);
     }
   }
 
