@@ -748,37 +748,3 @@ tabela.addEventListener("input", e => {
     }
   });
 // ----------------------------------------------------------------------------------------------
-
-
-
-
-
-// Validação dos botões INC DT BA----------------------------------------------------------------
-function mostrarCampoOS(tipo) {
-  const container = document.getElementById("os-container");
-  container.innerHTML = "";
-
-  const label = document.createElement("label");
-  label.textContent = "Ordem de Serviço";
-
-  const input = document.createElement("input");
-  input.id = "campo-os";
-  input.maxLength = 10;
-
-  if (tipo === "INC") {
-    input.type = "number";
-    input.placeholder = "Somente números";
-    input.maxLength = 8;
-  } else if (tipo === "DT" || tipo === "BA") {
-    input.value = tipo;
-    input.addEventListener("input", function () {
-      if (!input.value.startsWith(tipo)) {
-        input.value = tipo;
-      }
-    });
-  }
-
-  container.appendChild(label);
-  container.appendChild(input);
-}
-// -----------------------------------------------------------------------------------------------
