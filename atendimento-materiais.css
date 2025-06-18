@@ -152,7 +152,7 @@ tbody input {
 .tabela-materiais .coluna-2,
 .tabela-materiais td.coluna-2 {
   width: 50%;       /* DESCRIÇÃO */
-  min-width: 135px;
+  min-width: 150px;
 }
 
 .tabela-materiais .coluna-3,
