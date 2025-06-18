@@ -6,7 +6,8 @@ async function enviarParaPlanilha() {
   const operacao = document.getElementById("solicitado-por")?.value?.toUpperCase() || document.getElementById("entregue-por")?.value?.toUpperCase();
   const lead = document.getElementById("lead").value.toUpperCase();
   const ane = document.getElementById("ane").value.toUpperCase();
-  const ordemServico = document.getElementById("campo-os").value.toUpperCase();
+  const osInput = document.getElementById("campo-os");
+  const ordemServico = osInput ? osInput.value.toUpperCase() : "";
 
   const materiais = Array.from(document.querySelectorAll("#tabela-materiais tr")).map(tr => {
     const inputs = tr.querySelectorAll("input");
@@ -87,7 +88,7 @@ function validarCamposObrigatorios() {
   const operacao = document.getElementById("solicitado-por").value.trim();
   const ane = document.getElementById("ane").value.trim();
   const osInput = document.getElementById("campo-os");
-  const ordemServico = document.getElementById("campo-os")?.value.trim().toUpperCase() || "";
+  const ordemServico = osInput ? osInput.value.trim().toUpperCase() : "";
 
   if (!base) return alert("⚠️ Preencha o campo BASE.");
   if (!data) return alert("⚠️ Preencha o campo DATA.");
@@ -101,11 +102,12 @@ function validarCamposObrigatorios() {
   }
 
   if (ordemServico) {
-    if (tipoOrdemSelecionado === "INC" && !/^\d{8}$/.test(ordemServico)) {
-      return alert("⚠️ Ordem de serviço (INC) deve conter exatamente 8 números.");
-    }
-    if ((tipoOrdemSelecionado === "DT" || tipoOrdemSelecionado === "BA") && !new RegExp(`^${tipoOrdemSelecionado}\\d{8}$`).test(ordemServico)) {
-      return alert(`⚠️ Ordem de serviço (${tipoOrdemSelecionado}) deve ter o formato ${tipoOrdemSelecionado} + 8 números.\nExemplo: ${tipoOrdemSelecionado}12345678`);
+    if (/^\d{8}$/.test(ordemServico)) {
+      // OK, é um código tipo INC
+    } else if (/^(DT|BA)\d{8}$/.test(ordemServico)) {
+      // OK, é tipo DT ou BA com 8 dígitos
+    } else {
+      return alert("⚠️ Ordem de serviço inválida. Deve conter:\n- 8 números (ex: 12345678), ou\n- DT + 8 números (ex: DT12345678), ou\n- BA + 8 números (ex: BA12345678).");
     }
   }
 
