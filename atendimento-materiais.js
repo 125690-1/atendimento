@@ -7,7 +7,6 @@ const atendentesMRO = [
   "FÁBIO SÁ",
   "KAROLINA CASTRO",
   "FILIPE SAMPAIO",
-  "CLAUDINEY DUTRA",
   "EDSON LIMA",
   "FRANCISCO FACANHA"
 ];
