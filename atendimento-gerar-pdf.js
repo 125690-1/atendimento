@@ -154,7 +154,7 @@ document.getElementById("gerar-pdf").addEventListener("click", async function ()
   doc.line(15, 18, 195, 18);
   doc.setFontSize(20);
   doc.setFont("helvetica", "bold");
-  doc.text("FORMULÁRIO DE DEVOLUÇÃO", 105, 26, null, null, "center");
+  doc.text("FORMULÁRIO DE ATENDIMENTO", 105, 26, null, null, "center");
   doc.line(15, 30, 195, 30);
 
   // Dados do formulário
