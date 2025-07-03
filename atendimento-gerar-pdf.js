@@ -249,4 +249,31 @@ document.getElementById("gerar-pdf").addEventListener("click", async function ()
     ? `${tipo} ${ordemServico}.pdf`
     : `${tipo} ${ane}.pdf`;
   doc.save(nomeArquivo);
+  
+  const blob = doc.output("blob");
+  await enviarParaSistemaDeAssinatura(blob, nomeArquivo);
 });
+
+async function enviarParaSistemaDeAssinatura(pdfBlob, nomeArquivo) {
+  const formData = new FormData();
+  formData.append("pdf", pdfBlob, nomeArquivo);
+  formData.append("nome", nomeArquivo);
+
+  try {
+    const resposta = await fetch("https://URL_DO_SEU_BACKEND/receber-pdf", {
+      method: "POST",
+      body: formData
+    });
+
+    const resultado = await resposta.json();
+
+    if (resposta.ok) {
+      console.log("✅ PDF enviado para o sistema de assinatura");
+    } else {
+      alert("❌ Erro ao enviar PDF: " + (resultado.erro || "Erro desconhecido"));
+    }
+  } catch (erro) {
+    console.error("❌ Erro na conexão com o sistema de assinatura", erro);
+    alert("❌ Erro na conexão com o sistema de assinatura");
+  }
+}
